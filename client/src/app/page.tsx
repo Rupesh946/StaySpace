@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 
 import { useRef } from "react";
 
+import { CATEGORIES } from "@/data/categories";
+
 export default function Home() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -28,7 +30,12 @@ export default function Home() {
     return (
         <main className="min-h-screen">
             <Navbar />
-            <ShopSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+            <ShopSidebar
+                isOpen={isSidebarOpen}
+                onClose={() => setIsSidebarOpen(false)}
+                products={CATEGORIES['living'].scenes[0].products}
+                title={CATEGORIES['living'].scenes[0].title}
+            />
 
             {/* Hero Section */}
             <section className="relative h-screen w-full overflow-hidden">
@@ -99,7 +106,7 @@ export default function Home() {
 
             {/* Philosophy Section */}
             {/* Philosophy Section */}
-            <section className="py-40 px-6 bg-white">
+            <section className="py-40 px-6">
                 <div className="max-w-3xl mx-auto text-center">
                     <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-8 block">The Philosophy</span>
                     <h2 className="text-5xl md:text-7xl font-display italic font-light text-primary mb-10 leading-relaxed">
@@ -304,7 +311,7 @@ export default function Home() {
 
 
             {/* Editorial Horizontal Product Roll */}
-            <section className="py-24 border-t border-gray-100 bg-white">
+            <section className="py-24 border-t border-gray-100">
                 <div className="max-w-[1800px] mx-auto px-6 relative group/section">
                     <div className="flex items-end justify-between mb-12 px-2">
                         <div>
@@ -340,7 +347,7 @@ export default function Home() {
                                     href={`/products/${product.id}`}
                                     className="min-w-[280px] md:min-w-[340px] snap-start group cursor-pointer"
                                 >
-                                    <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-gray-50">
+                                    <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-black/5">
                                         <img
                                             src={product.img}
                                             alt={product.name}

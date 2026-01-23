@@ -28,7 +28,7 @@ export default function SceneViewer({ imageUrl, hotspots }: SceneViewerProps) {
     const [selectedHotspot, setSelectedHotspot] = useState<Hotspot | null>(null);
 
     return (
-        <div className="relative w-full h-[80vh] bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-[80vh] bg-background overflow-hidden">
             {/* Scene Image */}
             <img
                 src={imageUrl}
@@ -79,7 +79,7 @@ export default function SceneViewer({ imageUrl, hotspots }: SceneViewerProps) {
                             </div>
 
                             <div className="flex-1 overflow-y-auto">
-                                <div className="aspect-square bg-gray-100 mb-6 rounded-lg overflow-hidden">
+                                <div className="aspect-square bg-black/5 mb-6 rounded-lg overflow-hidden">
                                     <img
                                         src={selectedHotspot.product.image}
                                         alt={selectedHotspot.product.name}

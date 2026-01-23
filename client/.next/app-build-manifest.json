@@ -16,6 +16,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/spaces/[id]/page.js"
     ],
+    "/category/[id]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/category/[id]/page.js"
+    ],
     "/products/[id]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

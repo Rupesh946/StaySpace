@@ -4,46 +4,16 @@ import { X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// Mock Data matching the reference image style
-const sceneProducts = [
-    {
-        id: 1,
-        name: "Lahar Cushion Cover - Earthy Red",
-        price: 65.00,
-        image: "https://images.unsplash.com/photo-1590354148767-1335b376269b?auto=format&fit=crop&q=80&w=400",
-        discount: null
-    },
-    {
-        id: 2,
-        name: "Muhibbi Throw - Earthy Red",
-        price: 136.00,
-        originalPrice: 195.00,
-        image: "https://images.unsplash.com/photo-1616627552504-2b7336e8b28f?auto=format&fit=crop&q=80&w=400",
-        discount: "-30%"
-    },
-    {
-        id: 3,
-        name: "Dorothy Chest of Drawers",
-        price: 850.00,
-        image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=400",
-        discount: null,
-        tag: "SALE"
-    },
-    {
-        id: 4,
-        name: "Sheki Headboard - Super King",
-        price: 1250.00,
-        image: "https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=400",
-        discount: null
-    }
-];
+import { Product } from "@/data/categories";
 
 interface ShopSidebarProps {
     isOpen: boolean;
     onClose: () => void;
+    products: Product[];
+    title?: string;
 }
 
-export default function ShopSidebar({ isOpen, onClose }: ShopSidebarProps) {
+export default function ShopSidebar({ isOpen, onClose, products, title = "Shop the scene" }: ShopSidebarProps) {
     // Prevent body scroll when sidebar is open
     useEffect(() => {
         if (isOpen) {
@@ -77,7 +47,7 @@ export default function ShopSidebar({ isOpen, onClose }: ShopSidebarProps) {
                         <div className="p-6">
                             {/* Header */}
                             <div className="flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
-                                <h2 className="text-2xl font-serif">Shop scene (4)</h2>
+                                <h2 className="text-2xl font-serif">{title} ({products?.length || 0})</h2>
                                 <button onClick={onClose} className="p-2 hover:bg-gray-50 rounded-full transition-colors">
                                     <X className="w-6 h-6 text-gray-500" />
                                 </button>
@@ -85,9 +55,9 @@ export default function ShopSidebar({ isOpen, onClose }: ShopSidebarProps) {
 
                             {/* Product List */}
                             <div className="space-y-8">
-                                {sceneProducts.map((product) => (
+                                {products?.map((product) => (
                                     <div key={product.id} className="group">
-                                        <div className="relative aspect-square overflow-hidden bg-gray-50 mb-4">
+                                        <div className="relative aspect-square overflow-hidden bg-black/5 mb-4">
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
