@@ -2,6 +2,8 @@
 
 import Navbar from "@/components/Navbar";
 import ShopSidebar from "@/components/ShopSidebar";
+import SpaceCard from "@/components/SpaceCard";
+import { formatPrice } from "@/utils/currency";
 import { ArrowRight, ArrowUp, Eye } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -12,6 +14,7 @@ import { CATEGORIES } from "@/data/categories";
 
 export default function Home() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [hoveredSpace, setHoveredSpace] = useState<string | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const sceneScrollRef = useRef<HTMLDivElement>(null);
 
@@ -118,117 +121,75 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Featured Categories */}
+            {/* Featured Categories - Spaces */}
             <section className="py-20 px-6 bg-surface">
                 <div className="max-w-[1400px] mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[1200px]">
+                    {/* Header */}
+                    <div className="mb-16 text-center">
+                        <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-3 block">Interiors</span>
+                        <h2 className="text-4xl md:text-5xl font-display italic text-primary">Browse by Space</h2>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-auto md:h-[1200px] group/grid">
                         {/* Row 1: Living, Office (Lower), Bedroom */}
                         {/* Wrapper for first column */}
                         <div className="flex flex-col gap-4 h-full">
-                            <a href="/spaces/living" className="relative group overflow-hidden h-[600px] block cursor-pointer">
-                                <img
-                                    src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Living"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-700" />
-                                <div className="absolute bottom-10 left-10 text-white">
-                                    <h3 className="text-3xl font-display italic mb-3">Living Room</h3>
-                                    <div className="overflow-hidden">
-                                        <span className="inline-block text-xs uppercase tracking-widest border-b border-white/50 pb-1 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out">
-                                            Explore Collection
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/spaces/dining" className="relative group overflow-hidden h-[600px] block cursor-pointer">
-                                <img
-                                    src="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Dining"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-700" />
-                                <div className="absolute bottom-10 left-10 text-white">
-                                    <h3 className="text-3xl font-display italic mb-3">Dining</h3>
-                                    <div className="overflow-hidden">
-                                        <span className="inline-block text-xs uppercase tracking-widest border-b border-white/50 pb-1 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out">
-                                            Explore Collection
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
+                            <SpaceCard
+                                id="living"
+                                title="Living Room"
+                                href="/spaces/living"
+                                image="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1200&auto=format&fit=crop"
+                                hoveredSpace={hoveredSpace}
+                                setHoveredSpace={setHoveredSpace}
+                            />
+                            <SpaceCard
+                                id="dining"
+                                title="Dining"
+                                href="/spaces/dining"
+                                image="https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=1200&auto=format&fit=crop"
+                                hoveredSpace={hoveredSpace}
+                                setHoveredSpace={setHoveredSpace}
+                            />
                         </div>
 
                         {/* Wrapper for second column (Offset) */}
                         <div className="flex flex-col gap-4 h-full md:pt-12">
-                            <a href="/spaces/office" className="relative group overflow-hidden h-[600px] block cursor-pointer">
-                                <img
-                                    src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Office"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-700" />
-                                <div className="absolute bottom-10 left-10 text-white">
-                                    <h3 className="text-3xl font-display italic mb-3">Home Office</h3>
-                                    <div className="overflow-hidden">
-                                        <span className="inline-block text-xs uppercase tracking-widest border-b border-white/50 pb-1 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out">
-                                            Explore Collection
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/category/sofas" className="relative group overflow-hidden h-[600px] block cursor-pointer">
-                                <img
-                                    src="https://images.unsplash.com/photo-1550226891-ef816aed4a98?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Sofas"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-700" />
-                                <div className="absolute bottom-10 left-10 text-white">
-                                    <h3 className="text-3xl font-display italic mb-3">Sofas</h3>
-                                    <div className="overflow-hidden">
-                                        <span className="inline-block text-xs uppercase tracking-widest border-b border-white/50 pb-1 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out">
-                                            Explore Collection
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
+                            <SpaceCard
+                                id="office"
+                                title="Home Office"
+                                href="/spaces/office"
+                                image="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200&auto=format&fit=crop"
+                                hoveredSpace={hoveredSpace}
+                                setHoveredSpace={setHoveredSpace}
+                            />
+                            <SpaceCard
+                                id="sofas"
+                                title="Sofas"
+                                href="/category/sofas"
+                                image="https://images.unsplash.com/photo-1550226891-ef816aed4a98?q=80&w=1200&auto=format&fit=crop"
+                                hoveredSpace={hoveredSpace}
+                                setHoveredSpace={setHoveredSpace}
+                            />
                         </div>
 
                         {/* Wrapper for third column */}
                         <div className="flex flex-col gap-4 h-full">
-                            <a href="/spaces/bedroom" className="relative group overflow-hidden h-[600px] block cursor-pointer">
-                                <img
-                                    src="https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Bedroom"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-700" />
-                                <div className="absolute bottom-10 left-10 text-white">
-                                    <h3 className="text-3xl font-display italic mb-3">Bedroom</h3>
-                                    <div className="overflow-hidden">
-                                        <span className="inline-block text-xs uppercase tracking-widest border-b border-white/50 pb-1 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out">
-                                            Explore Collection
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/spaces/outdoor" className="relative group overflow-hidden h-[600px] block cursor-pointer">
-                                <img
-                                    src="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Outdoor"
-                                    className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-700" />
-                                <div className="absolute bottom-10 left-10 text-white">
-                                    <h3 className="text-3xl font-display italic mb-3">Outdoor</h3>
-                                    <div className="overflow-hidden">
-                                        <span className="inline-block text-xs uppercase tracking-widest border-b border-white/50 pb-1 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 ease-out">
-                                            Explore Collection
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
+                            <SpaceCard
+                                id="bedroom"
+                                title="Bedroom"
+                                href="/spaces/bedroom"
+                                image="https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=1200&auto=format&fit=crop"
+                                hoveredSpace={hoveredSpace}
+                                setHoveredSpace={setHoveredSpace}
+                            />
+                            <SpaceCard
+                                id="outdoor"
+                                title="Outdoor"
+                                href="/spaces/outdoor"
+                                image="https://images.unsplash.com/photo-1599619351208-3e6c839d6828?q=80&w=1200&auto=format&fit=crop"
+                                hoveredSpace={hoveredSpace}
+                                setHoveredSpace={setHoveredSpace}
+                            />
                         </div>
                     </div>
                 </div>
@@ -335,12 +296,12 @@ export default function Home() {
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {[
-                                { id: 1, name: "Lahar Cushion Cover", price: "£65.00", img: "https://images.unsplash.com/photo-1590354148767-1335b376269b?auto=format&fit=crop&q=80&w=800" },
-                                { id: 2, name: "Dorothy Chest", price: "£850.00", img: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800" },
-                                { id: 3, name: "Lana Three Seater", price: "£2,100.00", img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=800" },
-                                { id: 4, name: "Kintsugi Vase", price: "£125.00", img: "https://images.unsplash.com/photo-1579656381226-5fc70ac169d1?auto=format&fit=crop&q=80&w=800" },
-                                { id: 5, name: "Arne Dining Chair", price: "£450.00", img: "https://images.unsplash.com/photo-1506898667547-42e22a46e125?auto=format&fit=crop&q=80&w=800" },
-                                { id: 6, name: "Marble Coffee Table", price: "£1,200.00", img: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=800" }
+                                { id: 1, name: "Lahar Cushion Cover", price: 65, img: "https://images.unsplash.com/photo-1590354148767-1335b376269b?auto=format&fit=crop&q=80&w=800" },
+                                { id: 2, name: "Dorothy Chest", price: 850, img: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800" },
+                                { id: 3, name: "Lana Three Seater", price: 2100, img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=800" },
+                                { id: 4, name: "Kintsugi Vase", price: 125, img: "https://images.unsplash.com/photo-1579656381226-5fc70ac169d1?auto=format&fit=crop&q=80&w=800" },
+                                { id: 5, name: "Arne Dining Chair", price: 450, img: "https://images.unsplash.com/photo-1506898667547-42e22a46e125?auto=format&fit=crop&q=80&w=800" },
+                                { id: 6, name: "Marble Coffee Table", price: 1200, img: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=800" }
                             ].map((product) => (
                                 <a
                                     key={product.id}
@@ -356,7 +317,7 @@ export default function Home() {
                                     </div>
                                     <div className="text-center group-hover:opacity-80 transition-opacity">
                                         <h3 className="font-serif text-lg text-primary mb-1">{product.name}</h3>
-                                        <p className="text-xs font-light text-gray-500 tracking-wide">{product.price}</p>
+                                        <p className="text-xs font-light text-gray-500 tracking-wide">{formatPrice(product.price)}</p>
                                     </div>
                                 </a>
                             ))}

@@ -4,6 +4,7 @@ import { X, ShoppingBag } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import { formatPrice } from "@/utils/currency";
 import { Product } from "@/data/categories";
 
 interface ShopSidebarProps {
@@ -54,50 +55,43 @@ export default function ShopSidebar({ isOpen, onClose, products, title = "Shop t
                             </div>
 
                             {/* Product List */}
-                            <div className="space-y-8">
+                            <div className="space-y-12">
                                 {products?.map((product) => (
-                                    <div key={product.id} className="group">
-                                        <div className="relative aspect-square overflow-hidden bg-black/5 mb-4">
+                                    <a key={product.id} href={`/products/${product.id}`} className="block group">
+                                        <div className="relative aspect-square overflow-hidden bg-[#f5f5f5] mb-4">
                                             <img
                                                 src={product.image}
                                                 alt={product.name}
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                                className="w-full h-full object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-110 mix-blend-multiply"
                                             />
                                             {product.tag && (
-                                                <span className="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 uppercase tracking-wider">
+                                                <span className="absolute top-2 left-2 text-[10px] uppercase bg-white/90 backdrop-blur px-2 py-1 tracking-widest text-primary border border-white/50">
                                                     {product.tag}
                                                 </span>
                                             )}
                                         </div>
 
-                                        <div className="space-y-2">
-                                            <div className="flex justify-between items-start">
-                                                <h3 className="font-serif text-lg leading-tight group-hover:text-terracotta transition-colors">
-                                                    {product.name}
-                                                </h3>
-                                            </div>
+                                        <div className="text-center space-y-2">
+                                            <h3 className="font-serif text-xl text-primary group-hover:text-terracotta transition-colors">
+                                                {product.name}
+                                            </h3>
 
-                                            <div className="flex items-center gap-3 text-sm">
+                                            <div className="flex justify-center items-center gap-3 text-sm font-light">
                                                 {product.originalPrice && (
-                                                    <span className="text-gray-400 line-through">
-                                                        £{product.originalPrice.toFixed(2)}
+                                                    <span className="text-gray-400 line-through decoration-gray-300">
+                                                        {formatPrice(product.originalPrice)}
                                                     </span>
                                                 )}
-                                                <span className={product.discount ? "text-terracotta font-medium" : "text-gray-900"}>
-                                                    £{product.price.toFixed(2)}
+                                                <span className="text-primary font-medium">
+                                                    {formatPrice(product.price)}
                                                 </span>
-                                                {product.discount && (
-                                                    <span className="text-xs text-terracotta bg-terracotta/10 px-1.5 py-0.5 rounded">
-                                                        {product.discount}
-                                                    </span>
-                                                )}
                                             </div>
 
-                                            <button className="w-full bg-charcoal text-white py-3 mt-4 text-xs font-medium tracking-widest uppercase hover:bg-terracotta transition-colors flex items-center justify-center gap-2">
-                                                <span>View Details</span>
+                                            <button className="w-full bg-primary text-white py-3 mt-2 text-[10px] font-bold tracking-[0.2em] uppercase hover:bg-terracotta transition-colors opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 duration-500">
+                                                View Product
                                             </button>
                                         </div>
-                                    </div>
+                                    </a>
                                 ))}
                             </div>
                         </div>

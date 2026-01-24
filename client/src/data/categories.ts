@@ -8,6 +8,7 @@ export interface Product {
     description?: string;
     tag?: string;
     discount?: string;
+    images?: string[];
 }
 
 export interface Scene {
@@ -88,15 +89,104 @@ export const CATEGORIES: Record<string, CategoryData> = {
                 ]
             }
         ],
+
         allProducts: [
-            { id: 'l1', name: 'Lana Three Seater', price: 2100, image: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l2', name: 'Alabaster Coffee Table', price: 890, image: 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l3', name: 'Velvet Throw Pillow', price: 55, image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l4', name: 'Modular Sectional', price: 3200, image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l5', name: 'Brass Floor Lamp', price: 340, image: 'https://images.unsplash.com/photo-1513506003011-3b03c80165bd?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l6', name: 'Area Rug - Wool', price: 750, image: 'https://images.unsplash.com/photo-1575414003591-ece8d0416c7a?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l7', name: 'Wall Mirror', price: 210, image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=80&w=600' },
-            { id: 'l8', name: 'Media Console', price: 1400, image: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&q=80&w=600' }
+            {
+                id: 'lp1', name: 'Modern Lounge Chair', price: 1200, image: '/product1Living (4).png',
+                images: ['/product1Living (4).png', '/product1Living (5).png', '/product1Living (6).png']
+            },
+            {
+                id: 'lp2', name: 'Sleek Accent Chair', price: 950, image: '/product2Living (1).png',
+                images: ['/product2Living (1).png', '/product2Living (2).png', '/product2Living (3).png', '/product2Living (4).png']
+            },
+            {
+                id: 'lp3', name: 'Soft Area Rug', price: 450, image: '/Product3Living(rug) (1).png',
+                images: ['/Product3Living(rug) (1).png', '/Product3Living(rug) (2).png', '/Product3Living(rug) (3).png']
+            },
+            {
+                id: 'lp4', name: 'Modern Coffee Table', price: 890, image: '/Product4Living(table) (1).png',
+                images: ['/Product4Living(table) (1).png', '/Product4Living(table) (2).png', '/Product4Living(table) (3).png', '/Product4Living(table) (4).png', '/Product4Living(table) (5).png']
+            },
+            {
+                id: 'lp5', name: 'Plush Velvet Pillow', price: 55, image: '/Product5Living(pillow) (1).png',
+                images: ['/Product5Living(pillow) (1).png', '/Product5Living(pillow) (2).png', '/Product5Living(pillow) (3).png']
+            },
+            {
+                id: 'lp6', name: 'Wooden Side Table', price: 340, image: '/Product6Living(table) (1).png',
+                images: ['/Product6Living(table) (1).png', '/Product6Living(table) (2).png', '/Product6Living(table) (3).png']
+            },
+            {
+                id: 'lp7', name: 'Industrial Coffee Table', price: 780, image: '/Product7Living(table (1).png',
+                images: ['/Product7Living(table (1).png', '/Product7Living(table (2).png', '/Product7Living(table (3).png', '/Product7Living(table (4).png', '/Product7Living(table (5).png', '/Product7Living(table (6).png']
+            },
+            {
+                id: 'lp8', name: 'Minimalist Round Table', price: 560, image: '/product8Living(table) (1).png',
+                images: ['/product8Living(table) (1).png', '/product8Living(table) (2).png', '/product8Living(table) (3).png', '/product8Living(table) (4).png', '/product8Living(table) (5).png']
+            },
+            {
+                id: 'lp9', name: 'Nesting Tables', price: 670, image: '/Product9Living(table) (1).png',
+                images: ['/Product9Living(table) (1).png', '/Product9Living(table) (2).png', '/Product9Living(table) (3).png', '/Product9Living(table) (4).png', '/Product9Living(table) (5).png']
+            },
+            {
+                id: 'lp10', name: 'Geometric Side Table', price: 430, image: '/product10Living(table) (1).png',
+                images: ['/product10Living(table) (1).png', '/product10Living(table) (2).png', '/product10Living(table) (3).png', '/product10Living(table) (4).png', '/product10Living(table) (5).png', '/product10Living(table) (6).png']
+            },
+            {
+                id: 'lp11', name: 'Woven Jute Rug', price: 320, image: '/Product11Living(rug) (1).png',
+                images: ['/Product11Living(rug) (1).png', '/Product11Living(rug) (2).png', '/Product11Living(rug) (3).png']
+            },
+            {
+                id: 'lp12', name: 'Embroidered Throw Pillow', price: 65, image: '/Product12Living(pillow) (1).png',
+                images: ['/Product12Living(pillow) (1).png', '/Product12Living(pillow) (2).png']
+            },
+            {
+                id: 'lp13', name: 'Cotton Blend Pillow', price: 45, image: '/Product13Living(pillow) (1).png',
+                images: ['/Product13Living(pillow) (1).png', '/Product13Living(pillow) (2).png']
+            },
+            {
+                id: 'lp14', name: 'Decorative Accent Cushion', price: 75, image: '/Product14Living(pillow) (1).png',
+                images: ['/Product14Living(pillow) (1).png', '/Product14Living(pillow) (2).png', '/Product14Living(pillow) (3).png']
+            },
+            {
+                id: 'lp15', name: 'Glass Top Table', price: 1100, image: '/Product15Living(table) (1).png',
+                images: ['/Product15Living(table) (1).png', '/Product15Living(table) (2).png', '/Product15Living(table) (3).png', '/Product15Living(table) (4).png']
+            },
+            {
+                id: 'lp16', name: 'Textured Floor Rug', price: 580, image: '/Product16Living(rug) (1).png',
+                images: ['/Product16Living(rug) (1).png', '/Product16Living(rug) (2).png']
+            },
+            {
+                id: 'lp17', name: 'Rustic Wood Table', price: 920, image: '/Product17Living(table) (1).png',
+                images: ['/Product17Living(table) (1).png', '/Product17Living(table) (2).png', '/Product17Living(table) (3).png', '/Product17Living(table) (4).png']
+            },
+            {
+                id: 'lp18', name: 'Contemporary Center Table', price: 1450, image: '/Product18Living(table) (1).png',
+                images: ['/Product18Living(table) (1).png', '/Product18Living(table) (2).png', '/Product18Living(table) (3).png', '/Product18Living(table) (4).png', '/Product18Living(table) (5).png', '/Product18Living(table) (6).png', '/Product18Living(table) (7).png']
+            },
+            {
+                id: 'lp19', name: 'Low Profile Coffee Table', price: 880, image: '/Product19Living(table) (1).png',
+                images: ['/Product19Living(table) (1).png', '/Product19Living(table) (2).png', '/Product19Living(table) (3).png', '/Product19Living(table) (4).png']
+            },
+            {
+                id: 'lp20', name: 'Abstract Pattern Rug', price: 650, image: '/Product20Living(rug) (1).png',
+                images: ['/Product20Living(rug) (1).png', '/Product20Living(rug) (2).png']
+            },
+            {
+                id: 'lp21', name: 'Large Area Rug', price: 900, image: '/Product21Living(rug) (1).png',
+                images: ['/Product21Living(rug) (1).png', '/Product21Living(rug) (2).png']
+            },
+            {
+                id: 'lp22', name: 'Cozy Bedroom Rug', price: 400, image: '/Product22Living(rug) (1).png',
+                images: ['/Product22Living(rug) (1).png', '/Product22Living(rug) (2).png', '/Product22Living(rug) (3).png']
+            },
+            {
+                id: 'lp23', name: 'Square Throw Pillow', price: 50, image: '/Product23Living(pillow) (1).png',
+                images: ['/Product23Living(pillow) (1).png', '/Product23Living(pillow) (2).png', '/Product23Living(pillow) (3).png']
+            },
+            {
+                id: 'lp24', name: 'Compact Side Table', price: 290, image: '/Product24Living(table) (1).png',
+                images: ['/Product24Living(table) (1).png', '/Product24Living(table) (2).png', '/Product24Living(table) (3).png']
+            }
         ]
     },
     bedroom: {
