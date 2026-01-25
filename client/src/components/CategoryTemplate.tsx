@@ -35,7 +35,7 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
     // Filter States
     const [priceRange, setPriceRange] = useState({ min: 0, max: maxProductPrice });
     const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
-    const [selectedColors, setSelectedColors] = useState<string[]>([]);
+    const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
     const [showWishlistedOnly, setShowWishlistedOnly] = useState(false);
 
     // Helpers to infer metadata
@@ -49,20 +49,21 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
         return 'Decor'; // Default
     };
 
-    const getColor = (name: string, desc: string = '') => {
+    const getMaterial = (name: string, desc: string = '') => {
         const text = (name + ' ' + desc).toLowerCase();
-        if (text.includes('white') || text.includes('cream') || text.includes('ivory')) return 'White';
-        if (text.includes('black') || text.includes('dark') || text.includes('charcoal')) return 'Black';
-        if (text.includes('oak') || text.includes('walnut') || text.includes('wood') || text.includes('brown')) return 'Brown';
-        if (text.includes('gray') || text.includes('grey') || text.includes('concrete')) return 'Gray';
-        if (text.includes('blue') || text.includes('navy')) return 'Blue';
-        if (text.includes('green') || text.includes('sage')) return 'Green';
+        if (text.includes('leather')) return 'Leather';
+        if (text.includes('velvet') || text.includes('plush')) return 'Velvet';
+        if (text.includes('linen') || text.includes('cotton') || text.includes('fabric') || text.includes('wool') || text.includes('textile')) return 'Fabric';
+        if (text.includes('oak') || text.includes('walnut') || text.includes('wood') || text.includes('teak') || text.includes('bamboo') || text.includes('rattan')) return 'Wood';
+        if (text.includes('glass') || text.includes('mirror')) return 'Glass';
+        if (text.includes('metal') || text.includes('brass') || text.includes('gold') || text.includes('steel') || text.includes('iron') || text.includes('chrome')) return 'Metal';
+        if (text.includes('ceramic') || text.includes('marble') || text.includes('stone') || text.includes('concrete') || text.includes('clay')) return 'Stone/Ceramic';
         return 'Other';
     };
 
     // Extract unique available options for this category
     const availableTypes = Array.from(new Set(category.allProducts.map(p => getProductType(p.name))));
-    const availableColors = Array.from(new Set(category.allProducts.map(p => getColor(p.name, p.description || ''))));
+    const availableMaterials = Array.from(new Set(category.allProducts.map(p => getMaterial(p.name, p.description || '')))).filter(m => m !== 'Other').sort();
 
     const activeScene = category.scenes[activeSceneIndex];
 
@@ -74,8 +75,8 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
             // Type
             if (selectedTypes.length > 0 && !selectedTypes.includes(getProductType(p.name))) return false;
 
-            // Color
-            if (selectedColors.length > 0 && !selectedColors.includes(getColor(p.name, p.description))) return false;
+            // Material
+            if (selectedMaterials.length > 0 && !selectedMaterials.includes(getMaterial(p.name, p.description))) return false;
 
             // Wishlist (Mock check - simply returning false if enabled but not in mock list for now, 
             // ideally checks localStorage or context)
@@ -105,7 +106,7 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
             <Navbar />
 
             {/* Shop by Scene (Primary Feature) - Merged Intro */}
-            <section className="relative w-full h-[60vh] md:h-[65vh] bg-surface overflow-hidden group">
+            <section className="relative w-full h-[75vh] md:h-[85vh] bg-surface overflow-hidden group">
                 {/* ... (keep scene image logic) ... */}
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -121,22 +122,22 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
                             alt={activeScene.title}
                             className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-black/30 transition-opacity duration-700 group-hover:bg-black/40" />
+                        <div className="absolute inset-0 bg-black/10" />
                     </motion.div>
                 </AnimatePresence>
 
                 {/* Centered Text Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white z-10 px-4">
-                    <h1 className="text-xs font-sans uppercase tracking-[0.3em] opacity-80 mb-6 border-b border-white/30 pb-2">
+                    <h1 className="text-7xl md:text-9xl font-display italic font-medium tracking-tighter mb-6 opacity-95 drop-shadow-sm">
                         {category.title}
                     </h1>
-                    <p className="text-3xl md:text-5xl font-display italic font-light mb-10 max-w-3xl leading-tight drop-shadow-md">
+                    <p className="text-lg md:text-xl font-sans font-light tracking-wide mb-12 max-w-xl leading-relaxed opacity-90">
                         {category.intro}
                     </p>
 
-                    <div className="flex flex-col items-center gap-6 mt-4">
-                        <span className="text-[10px] uppercase tracking-widest opacity-70">
-                            Scene: {activeScene.title}
+                    <div className="flex flex-col items-center gap-8 mt-2">
+                        <span className="text-[11px] uppercase tracking-[0.2em] text-white/90 border border-white/20 px-5 py-2 rounded-full bg-black/10 backdrop-blur-sm">
+                            Scene — {activeScene.title}
                         </span>
                         <button
                             onClick={() => setIsSidebarOpen(true)}
@@ -234,22 +235,27 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
 
                                             {/* Colors */}
                                             <div>
-                                                <h4 className="text-[10px] uppercase tracking-widest text-gray-500 mb-4">Color</h4>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {availableColors.map(color => (
-                                                        <button
-                                                            key={color}
-                                                            onClick={() => {
-                                                                if (selectedColors.includes(color)) {
-                                                                    setSelectedColors(selectedColors.filter(c => c !== color));
-                                                                } else {
-                                                                    setSelectedColors([...selectedColors, color]);
-                                                                }
-                                                            }}
-                                                            className={`w-6 h-6 rounded-full border transition-all ${selectedColors.includes(color) ? 'ring-2 ring-terracotta ring-offset-2 scale-110' : 'border-gray-200 hover:scale-110'}`}
-                                                            style={{ backgroundColor: color === 'Other' ? '#ccc' : color.toLowerCase() }}
-                                                            title={color}
-                                                        />
+                                                <h4 className="text-[10px] uppercase tracking-widest text-gray-500 mb-4">Material</h4>
+                                                <div className="space-y-2">
+                                                    {availableMaterials.map(material => (
+                                                        <label key={material} className="flex items-center gap-3 cursor-pointer group">
+                                                            <div className={`w-4 h-4 border transition-colors flex items-center justify-center ${selectedMaterials.includes(material) ? 'bg-terracotta border-terracotta' : 'border-gray-200 group-hover:border-terracotta'}`}>
+                                                                {selectedMaterials.includes(material) && <div className="w-1.5 h-1.5 bg-white rounded-full" />}
+                                                            </div>
+                                                            <input
+                                                                type="checkbox"
+                                                                className="hidden"
+                                                                checked={selectedMaterials.includes(material)}
+                                                                onChange={() => {
+                                                                    if (selectedMaterials.includes(material)) {
+                                                                        setSelectedMaterials(selectedMaterials.filter(t => t !== material));
+                                                                    } else {
+                                                                        setSelectedMaterials([...selectedMaterials, material]);
+                                                                    }
+                                                                }}
+                                                            />
+                                                            <span className="text-xs text-gray-600 group-hover:text-black transition-colors">{material}</span>
+                                                        </label>
                                                     ))}
                                                 </div>
                                             </div>
@@ -272,7 +278,7 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
                                                 onClick={() => {
                                                     setPriceRange({ min: 0, max: maxProductPrice });
                                                     setSelectedTypes([]);
-                                                    setSelectedColors([]);
+                                                    setSelectedMaterials([]);
                                                     setShowWishlistedOnly(false);
                                                 }}
                                                 className="w-full text-[10px] uppercase tracking-widest text-terracotta hover:text-black transition-colors underline decoration-terracotta/30 underline-offset-4"

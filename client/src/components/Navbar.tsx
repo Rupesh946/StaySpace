@@ -42,8 +42,8 @@ export default function Navbar({ variant = "default" }: NavbarProps) {
 
                     {/* Center Navigation - Desktop */}
                     <div className="hidden lg:flex items-center gap-8 relative z-20">
-                        {['New', 'Living', 'Bedroom', 'Dining', 'Office', 'Sofas', 'Outdoor'].map((item) => {
-                            const href = item === 'New' ? '/shop' : item === 'Sofas' ? '/category/sofas' : `/spaces/${item.toLowerCase()}`;
+                        {['Living', 'Bedroom', 'Dining', 'Office', 'Sofas', 'Outdoor'].map((item) => {
+                            const href = item === 'Sofas' ? '/category/sofas' : `/spaces/${item.toLowerCase()}`;
                             const isActive = pathname === href;
 
                             return (

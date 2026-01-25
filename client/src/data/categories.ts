@@ -70,27 +70,23 @@ export const CATEGORIES: Record<string, CategoryData> = {
         intro: 'A gathering place for stories and rest.',
         scenes: [
             {
-                id: 'living-1',
-                title: 'Golden Hour',
-                image: 'https://images.unsplash.com/photo-1616486338812-3aeee037a9ec?q=80&w=2600&auto=format&fit=crop',
+                id: 'living-scene-new',
+                title: 'Modern Serenity',
+                image: '/ShoptheSceneLiving.png?v=2',
                 products: [
-                    { id: 'l1', name: 'Lana Three Seater', price: 2100, image: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=400' },
-                    { id: 'l2', name: 'Alabaster Coffee Table', price: 890, image: 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=400' },
-                    { id: 'l3', name: 'Velvet Throw Pillow', price: 55, image: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e6?auto=format&fit=crop&q=80&w=400' }
-                ]
-            },
-            {
-                id: 'living-2',
-                title: 'Evening Lounge',
-                image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=2600&auto=format&fit=crop',
-                products: [
-                    { id: 'l4', name: 'Modular Sectional', price: 3200, image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=400' },
-                    { id: 'l5', name: 'Brass Floor Lamp', price: 340, image: 'https://images.unsplash.com/photo-1513506003011-3b03c80165bd?auto=format&fit=crop&q=80&w=400' }
+                    { id: 'ls1', name: 'Modern Cream Sofa', price: 1800, image: '/Product1Sofa (2).png' },
+                    { id: 'lp3', name: 'Soft Area Rug', price: 450, image: '/Product3Living(rug) (1).png' },
+                    { id: 'lp4', name: 'Modern Coffee Table', price: 890, image: '/Product4Living(table) (1).png' },
+                    { id: 'lp5', name: 'Plush Velvet Pillow', price: 55, image: '/Product5Living(pillow) (1).png' },
                 ]
             }
         ],
 
         allProducts: [
+            {
+                id: 'ls1', name: 'Modern Cream Sofa', price: 1800, image: '/Product1Sofa (2).png',
+                images: ['/Product1Sofa (2).png', '/Product1Sofa (3).png']
+            },
             {
                 id: 'lp1', name: 'Modern Lounge Chair', price: 1200, image: '/product1Living (4).png',
                 images: ['/product1Living (4).png', '/product1Living (5).png', '/product1Living (6).png']
@@ -195,19 +191,62 @@ export const CATEGORIES: Record<string, CategoryData> = {
         intro: 'Sanctuary for the end of the day.',
         scenes: [
             {
-                id: 'bed-1',
-                title: 'Soft Morning',
-                image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?q=80&w=2600&auto=format&fit=crop',
+                id: 'bedroom-scene-new',
+                title: 'Serene Sanctuary',
+                image: '/Shopthescene bedroom.png',
                 products: [
-                    { id: 'b1', name: 'Linen Duvet Set', price: 280, image: "https://images.unsplash.com/photo-1522771753035-4a503f389f46?auto=format&fit=crop&q=80&w=400" },
-                    { id: 'b2', name: 'Oak Nightstand', price: 350, image: "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?auto=format&fit=crop&q=80&w=400" }
+                    { id: 'bp1', name: 'Modern Platform Bed', price: 1200, image: '/Product1Bedroom(bed) (1).png' },
+                    { id: 'bp2', name: 'Minimalist Bedside Lamp', price: 150, image: '/Product3Bedroom(lamp) (1).png' },
+                    { id: 'bp3', name: 'Soft Texture Rug', price: 300, image: '/Product5Bedroom(floormat) (1).png' },
+                    { id: 'bp4', name: 'Oak Storage Cupboard', price: 850, image: '/Product2Bedroom(cupboard) (1).png' },
                 ]
             }
         ],
         allProducts: [
-            { id: 'b1', name: 'Linen Duvet Set', price: 280, image: "https://images.unsplash.com/photo-1522771753035-4a503f389f46?auto=format&fit=crop&q=80&w=600" },
-            { id: 'b2', name: 'Oak Nightstand', price: 350, image: "https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?auto=format&fit=crop&q=80&w=600" },
-            { id: 'b3', name: 'Ceramic Table Lamp', price: 120, image: "https://images.unsplash.com/photo-1507473885765-e6ed058b7832?auto=format&fit=crop&q=80&w=600" }
+            {
+                id: 'bp1', name: 'Modern Platform Bed', price: 1200, image: '/Product1Bedroom(bed) (1).png',
+                images: ['/Product1Bedroom(bed) (1).png', '/Product1Bedroom(bed) (2).png', '/Product1Bedroom(bed) (3).png', '/Product1Bedroom(bed) (4).png']
+            },
+            {
+                id: 'bp2', name: 'Minimalist Bedside Lamp', price: 150, image: '/Product3Bedroom(lamp) (1).png',
+                images: ['/Product3Bedroom(lamp) (1).png', '/Product3Bedroom(lamp) (2).png', '/Product3Bedroom(lamp) (3).png', '/Product3Bedroom(lamp) (4).png']
+            },
+            {
+                id: 'bp3', name: 'Soft Texture Rug', price: 300, image: '/Product5Bedroom(floormat) (1).png',
+                images: ['/Product5Bedroom(floormat) (1).png', '/Product5Bedroom(floormat) (2).png', '/Product5Bedroom(floormat) (3).png']
+            },
+            {
+                id: 'bp4', name: 'Oak Storage Cupboard', price: 850, image: '/Product2Bedroom(cupboard) (1).png',
+                images: ['/Product2Bedroom(cupboard) (1).png', '/Product2Bedroom(cupboard) (2).png', '/Product2Bedroom(cupboard) (3).png', '/Product2Bedroom(cupboard) (4).png']
+            },
+            {
+                id: 'bp5', name: 'Contemporary Table Lamp', price: 180, image: '/Product4Bedroom(lamp) (1).png',
+                images: ['/Product4Bedroom(lamp) (1).png', '/Product4Bedroom(lamp) (2).png', '/Product4Bedroom(lamp) (3).png', '/Product4Bedroom(lamp) (4).png']
+            },
+            {
+                id: 'bp6', name: 'Tall Storage Unit', price: 950, image: '/Product6Bedroom(cupboard) (1).png',
+                images: ['/Product6Bedroom(cupboard) (1).png', '/Product6Bedroom(cupboard) (2).png', '/Product6Bedroom(cupboard) (3).png']
+            },
+            {
+                id: 'bp7', name: 'Wide Wardrobe', price: 1500, image: '/Product7Bedroom(cupboard) (1).png',
+                images: ['/Product7Bedroom(cupboard) (1).png', '/Product7Bedroom(cupboard) (2).png']
+            },
+            {
+                id: 'bp8', name: 'compact Bedside Table', price: 250, image: '/Product8Bedroom(cupboard) (1).png',
+                images: ['/Product8Bedroom(cupboard) (1).png', '/Product8Bedroom(cupboard) (2).png', '/Product8Bedroom(cupboard) (3).png', '/Product8Bedroom(cupboard) (4).png', '/Product8Bedroom(cupboard) (5).png']
+            },
+            {
+                id: 'bp9', name: 'Elegant Reading Lamp', price: 210, image: '/Product9Bedroom(lamp) (1).png',
+                images: ['/Product9Bedroom(lamp) (1).png', '/Product9Bedroom(lamp) (2).png', '/Product9Bedroom(lamp) (3).png', '/Product9Bedroom(lamp) (4).png']
+            },
+            {
+                id: 'bp10', name: 'Decorative Storage Box', price: 45, image: '/Product10Bedroom(Box) (1).png',
+                images: ['/Product10Bedroom(Box) (1).png', '/Product10Bedroom(Box) (2).png', '/Product10Bedroom(Box) (3).png', '/Product10Bedroom(Box) (4).png']
+            },
+            {
+                id: 'bp11', name: 'Luxury Upholstered Bed', price: 2200, image: '/Product11Bedroom(bed) (1).png',
+                images: ['/Product11Bedroom(bed) (1).png', '/Product11Bedroom(bed) (2).png', '/Product11Bedroom(bed) (3).png', '/Product11Bedroom(bed) (4).png', '/Product11Bedroom(bed) (5).png']
+            }
         ]
     },
     sofas: {
