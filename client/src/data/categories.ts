@@ -72,12 +72,12 @@ export const CATEGORIES: Record<string, CategoryData> = {
             {
                 id: 'living-scene-new',
                 title: 'Modern Serenity',
-                image: '/ShoptheSceneLiving.png?v=2',
+                image: '/ShopTheSceneLiving.jpg',
                 products: [
                     { id: 'ls1', name: 'Modern Cream Sofa', price: 1800, image: '/Product1Sofa (2).png' },
-                    { id: 'lp3', name: 'Soft Area Rug', price: 450, image: '/Product3Living(rug) (1).png' },
-                    { id: 'lp4', name: 'Modern Coffee Table', price: 890, image: '/Product4Living(table) (1).png' },
-                    { id: 'lp5', name: 'Plush Velvet Pillow', price: 55, image: '/Product5Living(pillow) (1).png' },
+                    { id: 'lp16', name: 'Textured Floor Rug', price: 580, image: '/Product16Living(rug) (1).png' },
+                    { id: 'lp19', name: 'Low Profile Coffee Table', price: 880, image: '/Product19Living(table) (1).png' },
+                    { id: 'lp12', name: 'Embroidered Throw Pillow', price: 65, image: '/Product12Living(pillow) (1).png' },
                 ]
             }
         ],
@@ -292,18 +292,54 @@ export const CATEGORIES: Record<string, CategoryData> = {
         intro: 'Where conversations and meals are shared.',
         scenes: [
             {
-                id: 'dine-1',
-                title: 'Family Feast',
-                image: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?q=80&w=2600&auto=format&fit=crop',
+                id: 'dining-scene-1',
+                title: 'Evening Feast',
+                image: '/ShopthesceneDining.jpg',
                 products: [
-                    { id: 'd1', name: 'Solid Walnut Table', price: 2200, image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&q=80&w=400" },
-                    { id: 'd2', name: 'Fabric Dining Chair', price: 320, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=400" }
+                    { id: 'dp1', name: 'Marble Top Dining Table', price: 2400, image: '/Product1Dining(dtable) (1).png' },
+                    { id: 'dp2', name: 'Oak Farmhouse Table', price: 1800, image: '/Product2Dining(dtable) (1).png' },
+                    { id: 'dp3', name: 'Round Walnut Table', price: 1200, image: '/Product3Dining(table) (1).png' },
+                    { id: 'dp4', name: 'Modern Glass Set', price: 3200, image: '/Product4Dining(table) (1).png' },
                 ]
             }
         ],
         allProducts: [
-            { id: 'd1', name: 'Solid Walnut Table', price: 2200, image: "https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&q=80&w=600" },
-            { id: 'd2', name: 'Fabric Dining Chair', price: 320, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=600" }
+            {
+                id: 'dp1', name: 'Marble Top Dining Table', price: 2400, image: '/Product1Dining(dtable) (1).png',
+                images: ['/Product1Dining(dtable) (1).png', '/Product1Dining(dtable) (2).png', '/Product1Dining(dtable) (3).png', '/Product1Dining(dtable) (4).png']
+            },
+            {
+                id: 'dp2', name: 'Oak Farmhouse Table', price: 1800, image: '/Product2Dining(dtable) (1).png',
+                images: ['/Product2Dining(dtable) (1).png', '/Product2Dining(dtable) (2).png', '/Product2Dining(dtable) (3).png', '/Product2Dining(dtable) (4).png', '/Product2Dining(dtable) (5).png']
+            },
+            {
+                id: 'dp3', name: 'Round Walnut Table', price: 1200, image: '/Product3Dining(table) (1).png',
+                images: ['/Product3Dining(table) (1).png', '/Product3Dining(table) (2).png', '/Product3Dining(table) (3).png', '/Product3Dining(table) (4).png']
+            },
+            {
+                id: 'dp4', name: 'Modern Glass Set', price: 3200, image: '/Product4Dining(table) (1).png',
+                images: ['/Product4Dining(table) (1).png', '/Product4Dining(table) (2).png', '/Product4Dining(table) (3).png', '/Product4Dining(table) (4).png', '/Product4Dining(table) (5).png']
+            },
+            {
+                id: 'dp5', name: 'Minimalist Dining Chair', price: 350, image: '/Product5Dining(table) (1).png',
+                images: ['/Product5Dining(table) (1).png', '/Product5Dining(table) (2).png', '/Product5Dining(table) (3).png', '/Product5Dining(table) (4).png', '/Product5Dining(table) (5).png']
+            },
+            {
+                id: 'dp6', name: 'Large Banquet Table', price: 4200, image: '/Product6Dining(table) (1).png',
+                images: ['/Product6Dining(table) (1).png', '/Product6Dining(table) (2).png', '/Product6Dining(table) (3).png', '/Product6Dining(table) (4).png', '/Product6Dining(table) (5).png']
+            },
+            {
+                id: 'dp7', name: 'Rustic Wooden Table', price: 2100, image: '/Product7Dining(table) (1).png',
+                images: ['/Product7Dining(table) (1).png', '/Product7Dining(table) (2).png', '/Product7Dining(table) (3).png', '/Product7Dining(table) (4).png']
+            },
+            {
+                id: 'dp8', name: 'Compact Dining Set', price: 1500, image: '/Product8Dining(table) (1).png',
+                images: ['/Product8Dining(table) (1).png', '/Product8Dining(table) (2).png', '/Product8Dining(table) (3).png', '/Product8Dining(table) (4).png']
+            },
+            {
+                id: 'dp9', name: 'Extendable Family Table', price: 2800, image: '/Product9Dining(table) (1).png',
+                images: ['/Product9Dining(table) (1).png', '/Product9Dining(table) (2).png', '/Product9Dining(table) (3).png', '/Product9Dining(table) (4).png', '/Product9Dining(table) (5).png']
+            }
         ]
     }
 };

@@ -10,11 +10,15 @@ import { motion } from "framer-motion";
 
 import { useRef } from "react";
 
-import { CATEGORIES } from "@/data/categories";
+import { CATEGORIES, Product } from "@/data/categories";
 
 export default function Home() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [hoveredSpace, setHoveredSpace] = useState<string | null>(null);
+    const [activeScene, setActiveScene] = useState<{ products: Product[], title: string }>({
+        products: CATEGORIES['living'].scenes[0].products,
+        title: CATEGORIES['living'].scenes[0].title
+    });
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const sceneScrollRef = useRef<HTMLDivElement>(null);
 
@@ -36,8 +40,8 @@ export default function Home() {
             <ShopSidebar
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}
-                products={CATEGORIES['living'].scenes[0].products}
-                title={CATEGORIES['living'].scenes[0].title}
+                products={activeScene.products}
+                title={activeScene.title}
             />
 
             {/* Hero Section */}
@@ -60,16 +64,16 @@ export default function Home() {
                 {/* Hero Content */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
                     <motion.h1
-                        className="text-7xl md:text-[10rem] font-display font-light italic leading-none tracking-tight mb-8 drop-shadow-lg"
+                        className="text-7xl md:text-[10rem] font-display font-light italic leading-none tracking-tight mb-8 drop-shadow-2xl"
                         initial="hidden"
                         animate="visible"
                         variants={{
-                            hidden: { opacity: 1 },
+                            hidden: { opacity: 0 },
                             visible: {
                                 opacity: 1,
                                 transition: {
-                                    staggerChildren: 0.12,
-                                    delayChildren: 0.5
+                                    staggerChildren: 0.04,
+                                    delayChildren: 0.1
                                 }
                             }
                         }}
@@ -79,14 +83,20 @@ export default function Home() {
                                 key={index}
                                 className="inline-block"
                                 variants={{
-                                    hidden: { opacity: 0, filter: "blur(10px)", y: 10 },
+                                    hidden: {
+                                        opacity: 0,
+                                        y: 40,
+                                        filter: "blur(12px)",
+                                        scale: 1.1
+                                    },
                                     visible: {
                                         opacity: 1,
-                                        filter: "blur(0px)",
                                         y: 0,
+                                        filter: "blur(0px)",
+                                        scale: 1,
                                         transition: {
-                                            duration: 1.5,
-                                            ease: [0.22, 1, 0.36, 1], // Editorial ease
+                                            duration: 0.8,
+                                            ease: [0.2, 0.65, 0.3, 0.9],
                                         }
                                     }
                                 }}
@@ -96,10 +106,10 @@ export default function Home() {
                         ))}
                     </motion.h1>
                     <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1.5, delay: 1.5, ease: "easeOut" }}
-                        className="text-2xl md:text-4xl font-display font-light italic mb-12 max-w-2xl mx-auto text-white/90 tracking-wide drop-shadow-md"
+                        initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        transition={{ duration: 0.8, delay: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
+                        className="text-2xl md:text-3xl font-display font-light italic mb-12 max-w-2xl mx-auto text-white/90 tracking-wide drop-shadow-lg"
                     >
                         Design the space. Live the feeling.
                     </motion.p>
@@ -208,22 +218,37 @@ export default function Home() {
                             id: "sunday-retreat",
                             tag: "In Residence",
                             title: <>The Sunday Morning<br />Retreat</>,
+                            sidebarTitle: "The Sunday Morning Retreat",
                             description: "A curated collection for slow living. Layered textures, warm lighting, and the perfect chair for losing yourself in a book.",
-                            image: "https://images.unsplash.com/photo-1616486338812-3aeee037a9ec?q=80&w=2600&auto=format&fit=crop"
+                            image: "/ShopTheSceneLiving.jpg",
+                            products: CATEGORIES['living'].scenes[0].products
                         },
                         {
                             id: "evening-lounge",
                             tag: "Evening Mood",
                             title: <>The Evening<br />Lounge</>,
+                            sidebarTitle: "The Evening Lounge",
                             description: "Deep tones and soft shadows. Create a space that invites conversation and calm as the day winds down.",
-                            image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=2600&auto=format&fit=crop"
+                            image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=2600&auto=format&fit=crop",
+                            products: CATEGORIES['sofas'].scenes[0].products
                         },
                         {
                             id: "minimalist-work",
                             tag: "Workspace",
                             title: <>Focused<br />Simplicity</>,
+                            sidebarTitle: "Focused Simplicity",
                             description: "Clear lines for a clear mind. Designing a workspace that balances function with an inspiring aesthetic.",
-                            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2600&auto=format&fit=crop"
+                            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2600&auto=format&fit=crop",
+                            products: CATEGORIES['office'].scenes[0].products
+                        },
+                        {
+                            id: "evening-feast",
+                            tag: "Dining",
+                            title: <>The Evening<br />Feast</>,
+                            sidebarTitle: "The Evening Feast",
+                            description: "Where conversations flow as freely as the wine. A setting designed for connection and culinary delight.",
+                            image: "/ShopthesceneDining.jpg",
+                            products: CATEGORIES['dining'].scenes[0].products
                         }
                     ].map((scene) => (
                         <div key={scene.id} className="min-w-full h-full relative snap-start">
@@ -247,7 +272,13 @@ export default function Home() {
                                     {scene.description}
                                 </p>
                                 <button
-                                    onClick={() => setIsSidebarOpen(true)}
+                                    onClick={() => {
+                                        setActiveScene({
+                                            products: scene.products,
+                                            title: scene.sidebarTitle
+                                        });
+                                        setIsSidebarOpen(true);
+                                    }}
                                     className="group flex items-center gap-4 bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-500"
                                 >
                                     <span className="text-xs uppercase tracking-widest">Shop This Scene</span>
