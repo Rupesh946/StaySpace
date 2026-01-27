@@ -64,7 +64,7 @@ export default function Home() {
                 {/* Hero Content */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
                     <motion.h1
-                        className="text-7xl md:text-[10rem] font-display font-light italic leading-none tracking-tight mb-8 drop-shadow-2xl"
+                        className="text-7xl md:text-[10rem] font-serif font-bold leading-none tracking-tighter mb-8 drop-shadow-2xl"
                         initial="hidden"
                         animate="visible"
                         variants={{
@@ -238,7 +238,7 @@ export default function Home() {
                             title: <>Focused<br />Simplicity</>,
                             sidebarTitle: "Focused Simplicity",
                             description: "Clear lines for a clear mind. Designing a workspace that balances function with an inspiring aesthetic.",
-                            image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2600&auto=format&fit=crop",
+                            image: "/ShopTheSceneOffice.jpg",
                             products: CATEGORIES['office'].scenes[0].products
                         },
                         {

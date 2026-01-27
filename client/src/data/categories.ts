@@ -34,34 +34,58 @@ export const CATEGORIES: Record<string, CategoryData> = {
         intro: 'Designed for focus and quiet intention.',
         scenes: [
             {
-                id: 'office-1',
-                title: 'Morning Focus',
-                image: 'https://images.unsplash.com/photo-1593642532973-d31b6557fa68?q=80&w=2000&auto=format&fit=crop',
+                id: 'office-scene-new',
+                title: 'Executive Workspace',
+                image: '/ShopTheSceneOffice.jpg',
                 products: [
-                    { id: 'o1', name: 'Eames Task Chair', price: 450, image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&q=80&w=400' },
-                    { id: 'o2', name: 'Oak Executive Desk', price: 1200, image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&q=80&w=400' },
-                    { id: 'o3', name: 'Anglepoise Lamp', price: 180, image: 'https://images.unsplash.com/photo-1534349762230-e73715c6d3bc?auto=format&fit=crop&q=80&w=400' }
-                ]
-            },
-            {
-                id: 'office-2',
-                title: 'Creative Studio',
-                image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2000&auto=format&fit=crop',
-                products: [
-                    { id: 'o4', name: 'Drafting Stool', price: 220, image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=80&w=400' },
-                    { id: 'o5', name: 'Wide Plan Chest', price: 950, image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=400' }
+                    { id: 'op3', name: 'Ergonomic Office Chair', price: 450, image: '/Product3Office(chair) (1).png' },
+                    { id: 'op4', name: 'Modern Executive Desk', price: 1200, image: '/Product4Office(table) (1).png' },
+                    { id: 'op1', name: 'Desk Essentials Set', price: 120, image: '/Product1Office(essentials) (1).png' },
+                    { id: 'op2', name: 'Office Organizer', price: 85, image: '/Product2Office(essentials) (1).png' },
                 ]
             }
         ],
         allProducts: [
-            { id: 'o1', name: 'Eames Task Chair', price: 450, image: 'https://images.unsplash.com/photo-1580480055273-228ff5388ef8?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o2', name: 'Oak Executive Desk', price: 1200, image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o3', name: 'Anglepoise Lamp', price: 180, image: 'https://images.unsplash.com/photo-1534349762230-e73715c6d3bc?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o4', name: 'Drafting Stool', price: 220, image: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o5', name: 'Wide Plan Chest', price: 950, image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o6', name: 'Leather Desk Pad', price: 85, image: 'https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o7', name: 'Ceramic Pen Pot', price: 45, image: 'https://images.unsplash.com/photo-1515542706979-33d526e838b3?auto=format&fit=crop&q=80&w=600' },
-            { id: 'o8', name: 'Minimalist Bookshelf', price: 650, image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?auto=format&fit=crop&q=80&w=600' }
+            {
+                id: 'op1', name: 'Desk Essentials Set', price: 120, image: '/Product1Office(essentials) (1).png',
+                images: ['/Product1Office(essentials) (1).png', '/Product1Office(essentials) (2).png', '/Product1Office(essentials) (3).png', '/Product1Office(essentials) (4).png']
+            },
+            {
+                id: 'op2', name: 'Office Organizer', price: 85, image: '/Product2Office(essentials) (1).png',
+                images: ['/Product2Office(essentials) (1).png', '/Product2Office(essentials) (2).png', '/Product2Office(essentials) (3).png', '/Product2Office(essentials) (4).png', '/Product2Office(essentials)(5).png']
+            },
+            {
+                id: 'op3', name: 'Ergonomic Office Chair', price: 450, image: '/Product3Office(chair) (1).png',
+                images: ['/Product3Office(chair) (1).png', '/Product3Office(chair) (2).png', '/Product3Office(chair) (3).png', '/Product3Office(chair) (4).png']
+            },
+            {
+                id: 'op4', name: 'Modern Executive Desk', price: 1200, image: '/Product4Office(table) (1).png',
+                images: ['/Product4Office(table) (1).png', '/Product4Office(table) (2).png', '/Product4Office(table) (3).png', '/Product4Office(table) (4).png', '/Product4Office(table) (5).png']
+            },
+            {
+                id: 'op5', name: 'Minimalist Work Table', price: 800, image: '/Product5Office(table) (1).png',
+                images: ['/Product5Office(table) (1).png', '/Product5Office(table) (2).png', '/Product5Office(table) (3).png', '/Product5Office(table) (4).png', '/Product5Office(table) (5).png']
+            },
+            {
+                id: 'op6', name: 'Executive Leather Chair', price: 650, image: '/Product6Office(chair) (1).png',
+                images: ['/Product6Office(chair) (1).png', '/Product6Office(chair) (2).png', '/Product6Office(chair) (3).png', '/Product6Office(chair) (4).png', '/Product6Office(chair) (5).png', '/Product6Office(chair) (6).png']
+            },
+            {
+                id: 'op7', name: 'Stationery Set', price: 45, image: '/Product7Office(essentials) (1).png',
+                images: ['/Product7Office(essentials) (1).png', '/Product7Office(essentials) (2).png', '/Product7Office(essentials) (3).png', '/Product7Office(essentials) (4).png']
+            },
+            {
+                id: 'op8', name: 'Corner Desk', price: 950, image: '/Product8Office(table) (1).png',
+                images: ['/Product8Office(table) (1).png', '/Product8Office(table) (2).png', '/Product8Office(table) (3).png', '/Product8Office(table) (4).png', '/Product8Office(table) (5).png']
+            },
+            {
+                id: 'op9', name: 'Study Table', price: 550, image: '/Product9office(table) (1).png',
+                images: ['/Product9office(table) (1).png', '/Product9office(table) (2).png', '/Product9office(table) (3).png', '/Product9office(table) (4).png']
+            },
+            {
+                id: 'op10', name: 'Compact Office Desk', price: 400, image: '/Product10Office(table) (1).png',
+                images: ['/Product10Office(table) (1).png', '/Product10Office(table) (2).png', '/Product10Office(table) (3).png', '/Product10Office(table) (4).png']
+            }
         ]
     },
     living: {
