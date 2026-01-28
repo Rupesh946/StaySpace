@@ -229,7 +229,7 @@ export default function Home() {
                             title: <>The Evening<br />Lounge</>,
                             sidebarTitle: "The Evening Lounge",
                             description: "Deep tones and soft shadows. Create a space that invites conversation and calm as the day winds down.",
-                            image: "https://images.unsplash.com/photo-1600210492493-0946911123ea?q=80&w=2600&auto=format&fit=crop",
+                            image: "/ShoptheSceneSofa.jpg",
                             products: CATEGORIES['sofas'].scenes[0].products
                         },
                         {

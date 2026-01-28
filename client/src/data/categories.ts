@@ -279,17 +279,50 @@ export const CATEGORIES: Record<string, CategoryData> = {
         intro: 'The centerpiece of your living space.',
         scenes: [
             {
-                id: 'sofa-1',
-                title: 'The Central Piece',
-                image: 'https://images.unsplash.com/photo-1550226891-ef816aed4a98?q=80&w=2600&auto=format&fit=crop',
+                id: 'sofa-scene-new',
+                title: 'The Comfort Zone',
+                image: '/ShoptheSceneSofa.jpg',
                 products: [
-                    { id: 's1', name: 'Velvet Chesterfield', price: 2400, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=400" }
+                    { id: 'sf1', name: 'Cloud Comfort Sofa', price: 2100, image: '/Product1Sofa (1).png' },
+                    { id: 'sf2', name: 'Contemporary Grey Sectional', price: 1850, image: '/Product2Sofa (1).png' },
+                    { id: 'sf4', name: 'Luxe Velvet 3-Seater', price: 2300, image: '/Product4Sofa (1).png' },
+                    { id: 'sf5', name: 'Minimalist Modular Sofa', price: 1950, image: '/Product5Sofa (1).png' },
                 ]
             }
         ],
         allProducts: [
-            { id: 's1', name: 'Velvet Chesterfield', price: 2400, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600" },
-            { id: 's2', name: 'Modern Sectional', price: 1800, image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600" }
+            {
+                id: 'sf1', name: 'Cloud Comfort Sofa', price: 2100, image: '/Product1Sofa (1).png',
+                images: ['/Product1Sofa (1).png', '/Product1Sofa (2).png', '/Product1Sofa (3).png', '/Product1Sofa (4).png', '/Product1Sofa (5).png']
+            },
+            {
+                id: 'sf2', name: 'Contemporary Grey Sectional', price: 1850, image: '/Product2Sofa (1).png',
+                images: ['/Product2Sofa (1).png', '/Product2Sofa (2).png', '/Product2Sofa (3).png', '/Product2Sofa (4).png']
+            },
+            {
+                id: 'sf3', name: 'Beige Lounge Sofa', price: 1600, image: '/Product3Sofa (1).png',
+                images: ['/Product3Sofa (1).png', '/Product3Sofa (2).png', '/Product3Sofa (3).png', '/Product3Sofa (4).png', '/Product3Sofa (5).png', '/Product3Sofa (6).png']
+            },
+            {
+                id: 'sf4', name: 'Luxe Velvet 3-Seater', price: 2300, image: '/Product4Sofa (1).png',
+                images: ['/Product4Sofa (1).png', '/Product4Sofa (2).png', '/Product4Sofa (3).png', '/Product4Sofa (4).png', '/Product4Sofa (5).png']
+            },
+            {
+                id: 'sf5', name: 'Minimalist Modular Sofa', price: 1950, image: '/Product5Sofa (1).png',
+                images: ['/Product5Sofa (1).png', '/Product5Sofa (2).png', '/Product5Sofa (3).png', '/Product5Sofa (4).png', '/Product5Sofa (5).png']
+            },
+            {
+                id: 'sf6', name: 'Modern Loveseat', price: 1200, image: '/Product6Sofa (1).png',
+                images: ['/Product6Sofa (1).png', '/Product6Sofa (2).png', '/Product6Sofa (3).png', '/Product6Sofa (4).png']
+            },
+            {
+                id: 'sf7', name: 'Bold Accent Sofa', price: 1750, image: '/Product7Sofa (1).png',
+                images: ['/Product7Sofa (1).png', '/Product7Sofa (2).png', '/Product7Sofa (3).png', '/Product7Sofa (4).png']
+            },
+            {
+                id: 'sf8', name: 'Classic Family Sofa', price: 1450, image: '/Product8Sofa (1).png',
+                images: ['/Product8Sofa (1).png', '/Product8Sofa (2).png', '/Product8Sofa (3).png', '/Product8Sofa (4).png', '/Product8Sofa (5).png', '/Product8Sofa (6).png']
+            }
         ]
     },
     outdoor: {
