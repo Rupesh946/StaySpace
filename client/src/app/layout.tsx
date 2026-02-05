@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     description: "Experience scene-based shopping for your home.",
 };
 
+import { WishlistProvider } from "@/context/WishlistContext";
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -24,7 +26,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.variable} ${playfair.variable} ${cormorant.variable} font-sans`}>
-                {children}
+                <WishlistProvider>
+                    {children}
+                </WishlistProvider>
             </body>
         </html>
     );

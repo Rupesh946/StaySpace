@@ -13,6 +13,8 @@ interface CategoryTemplateProps {
     categorySlug: string;
 }
 
+import { useWishlist } from "@/context/WishlistContext";
+
 export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps) {
     // Handle case insensitivity and ensure safe access
     const category = CATEGORIES[categorySlug.toLowerCase()];
@@ -21,6 +23,7 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
         return notFound();
     }
 
+    const { isInWishlist } = useWishlist();
     const [activeSceneIndex, setActiveSceneIndex] = useState(0);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc'>('featured');
@@ -78,19 +81,9 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
             // Material
             if (selectedMaterials.length > 0 && !selectedMaterials.includes(getMaterial(p.name, p.description))) return false;
 
-            // Wishlist (Mock check - simply returning false if enabled but not in mock list for now, 
-            // ideally checks localStorage or context)
-            // For demo purposes, we'll assume no items are wishlisted unless we had state for it.
-            // Let's rely on standard logic: if toggle is ON, filtering out everything unless matched.
-            if (showWishlistedOnly) {
-                // Check localStorage 'wishlist' if available in client
-                // This is a naive check; in real app use Context
-                if (typeof window !== 'undefined') {
-                    // This re-reads every render, optimization would be to sync state
-                    // Skipping actual implementation to avoid complexity overhead in this snippet
-                    // defaulting to show none or all for now.
-                    return false;
-                }
+            // Wishlist Filter
+            if (showWishlistedOnly && !isInWishlist(p.id)) {
+                return false;
             }
 
             return true;
@@ -122,7 +115,7 @@ export default function CategoryTemplate({ categorySlug }: CategoryTemplateProps
                             alt={activeScene.title}
                             className="w-full h-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-black/10" />
+                        <div className="absolute inset-0 bg-black/40" />
                     </motion.div>
                 </AnimatePresence>
 

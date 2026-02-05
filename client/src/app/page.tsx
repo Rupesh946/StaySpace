@@ -8,11 +8,27 @@ import { ArrowRight, ArrowUp, Eye } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 import { CATEGORIES, Product } from "@/data/categories";
 
 export default function Home() {
+    const [curatedProducts, setCuratedProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        // Gather all products from all categories
+        const allProducts = Object.values(CATEGORIES).flatMap(cat => cat.allProducts);
+
+        // Shuffle array using Fisher-Yates algorithm
+        for (let i = allProducts.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allProducts[i], allProducts[j]] = [allProducts[j], allProducts[i]];
+        }
+
+        // Take the first 8
+        setCuratedProducts(allProducts.slice(0, 8));
+    }, []);
+
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [hoveredSpace, setHoveredSpace] = useState<string | null>(null);
     const [activeScene, setActiveScene] = useState<{ products: Product[], title: string }>({
@@ -249,6 +265,15 @@ export default function Home() {
                             description: "Where conversations flow as freely as the wine. A setting designed for connection and culinary delight.",
                             image: "/ShopthesceneDining.jpg",
                             products: CATEGORIES['dining'].scenes[0].products
+                        },
+                        {
+                            id: "garden-patio",
+                            tag: "Nature's Retreat",
+                            title: <>Garden<br />Patio</>,
+                            sidebarTitle: "Garden Patio",
+                            description: "Embrace the outdoors with comfort and style. A serene setting for fresh air and relaxation.",
+                            image: "/ShopTheSceneOutdoor.avif",
+                            products: CATEGORIES['outdoor'].scenes[0].products
                         }
                     ].map((scene) => (
                         <div key={scene.id} className="min-w-full h-full relative snap-start">
@@ -258,7 +283,7 @@ export default function Home() {
                                     alt="Scene"
                                     className="w-full h-full object-cover"
                                 />
-                                <div className="absolute inset-0 bg-black/20" />
+                                <div className="absolute inset-0 bg-black/40" />
                             </div>
 
                             <div className="absolute bottom-20 left-10 md:left-20 text-white z-20 max-w-xl">
@@ -326,14 +351,7 @@ export default function Home() {
                             className="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide"
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
-                            {[
-                                { id: 1, name: "Lahar Cushion Cover", price: 65, img: "https://images.unsplash.com/photo-1590354148767-1335b376269b?auto=format&fit=crop&q=80&w=800" },
-                                { id: 2, name: "Dorothy Chest", price: 850, img: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800" },
-                                { id: 3, name: "Lana Three Seater", price: 2100, img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&q=80&w=800" },
-                                { id: 4, name: "Kintsugi Vase", price: 125, img: "https://images.unsplash.com/photo-1579656381226-5fc70ac169d1?auto=format&fit=crop&q=80&w=800" },
-                                { id: 5, name: "Arne Dining Chair", price: 450, img: "https://images.unsplash.com/photo-1506898667547-42e22a46e125?auto=format&fit=crop&q=80&w=800" },
-                                { id: 6, name: "Marble Coffee Table", price: 1200, img: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=800" }
-                            ].map((product) => (
+                            {curatedProducts.map((product) => (
                                 <a
                                     key={product.id}
                                     href={`/products/${product.id}`}
@@ -341,7 +359,7 @@ export default function Home() {
                                 >
                                     <div className="relative aspect-[3/4] overflow-hidden mb-6 bg-black/5">
                                         <img
-                                            src={product.img}
+                                            src={product.image}
                                             alt={product.name}
                                             className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
                                         />

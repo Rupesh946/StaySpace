@@ -331,16 +331,54 @@ export const CATEGORIES: Record<string, CategoryData> = {
         intro: 'Extension of your living space into nature.',
         scenes: [
             {
-                id: 'out-1',
+                id: 'outdoor-scene-new',
                 title: 'Garden Patio',
-                image: 'https://images.unsplash.com/photo-1599619351208-3e6c839d6828?q=80&w=2600&auto=format&fit=crop',
+                image: '/ShopTheSceneOutdoor.avif',
                 products: [
-                    { id: 'od1', name: 'Teak Lounge Chair', price: 650, image: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=400" }
+                    { id: 'od2', name: 'Patio Dining Set', price: 1200, image: '/Product2Outdoor(tableChair) (1).png' },
+                    { id: 'od4', name: 'Classic Garden Bench', price: 450, image: '/Product4Outdoor(bench) (1).png' },
+                    { id: 'od7', name: 'Pathway Lighting', price: 120, image: '/Product7Outdoor(lighting) (1).png' },
+                    { id: 'od9', name: 'Rustic Bench', price: 380, image: '/Product9outdoor(bench) (1).png' },
                 ]
             }
         ],
         allProducts: [
-            { id: 'od1', name: 'Teak Lounge Chair', price: 650, image: "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=600" }
+            {
+                id: 'od1', name: 'Outdoor Floor Tiles', price: 85, image: '/Product1Outdoor(floor)(1).png',
+                images: ['/Product1Outdoor(floor)(1).png', '/Product1Outdoor(floor) (2).png', '/Product1Outdoor(floor) (3).png', '/Product1Outdoor(floor) (4).png', '/Product1Outdoor(floor) (5).png']
+            },
+            {
+                id: 'od2', name: 'Patio Dining Set', price: 1200, image: '/Product2Outdoor(tableChair) (1).png',
+                images: ['/Product2Outdoor(tableChair) (1).png', '/Product2Outdoor(tableChair) (2).png', '/Product2Outdoor(tableChair) (3).png', '/Product2Outdoor(tableChair) (4).png', '/Product2Outdoor(tableChair) (5).png']
+            },
+            {
+                id: 'od3', name: 'Garden Table', price: 550, image: '/Product3Outdoor(table) (1).png',
+                images: ['/Product3Outdoor(table) (1).png', '/Product3Outdoor(table) (2).png', '/Product3Outdoor(table) (3).png', '/Product3Outdoor(table) (4).png']
+            },
+            {
+                id: 'od4', name: 'Classic Garden Bench', price: 450, image: '/Product4Outdoor(bench) (1).png',
+                images: ['/Product4Outdoor(bench) (1).png', '/Product4Outdoor(bench) (2).png', '/Product4Outdoor(bench) (3).png', '/Product4Outdoor(bench) (4).png', '/Product4Outdoor(bench) (5).png', '/Product4Outdoor(bench) (6).png']
+            },
+            {
+                id: 'od5', name: 'Modern Bench', price: 320, image: '/Product5Outdoor(bench) (1).png',
+                images: ['/Product5Outdoor(bench) (1).png', '/Product5Outdoor(bench) (2).png', '/Product5Outdoor(bench) (3).png']
+            },
+            {
+                id: 'od6', name: 'Bistro Set', price: 280, image: '/Product6Outdoor(tablechair) (1).png',
+                images: ['/Product6Outdoor(tablechair) (1).png', '/Product6Outdoor(tablechair) (2).png']
+            },
+            {
+                id: 'od7', name: 'Pathway Lighting', price: 120, image: '/Product7Outdoor(lighting) (1).png',
+                images: ['/Product7Outdoor(lighting) (1).png', '/Product7Outdoor(lighting) (2).png', '/Product7Outdoor(lighting) (3).png', '/Product7Outdoor(lighting) (4).png', '/Product7Outdoor(lighting) (5).png']
+            },
+            {
+                id: 'od8', name: 'Hanging Outdoor Light', price: 95, image: '/Product8Outdoor(Lighitng) (1).png',
+                images: ['/Product8Outdoor(Lighitng) (1).png', '/Product8Outdoor(Lighitng) (2).png', '/Product8Outdoor(Lighitng) (3).png']
+            },
+            {
+                id: 'od9', name: 'Rustic Bench', price: 380, image: '/Product9outdoor(bench) (1).png',
+                images: ['/Product9outdoor(bench) (1).png', '/Product9outdoor(bench) (2).png', '/Product9outdoor(bench) (3).png', '/Product9outdoor(bench) (4).png', '/Product9outdoor(bench) (5).png']
+            }
         ]
     },
     dining: {

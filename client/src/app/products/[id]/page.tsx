@@ -7,6 +7,8 @@ import { CATEGORIES, Product } from "@/data/categories";
 import ProductCard from "@/components/ProductCard";
 import { formatPrice } from "@/utils/currency";
 import { notFound } from "next/navigation";
+import { Heart } from "lucide-react";
+import { useWishlist } from "@/context/WishlistContext";
 
 export default function ProductPage({ params }: { params: { id: string } }) {
     // Flatten all products from all categories to find the matching one
@@ -17,6 +19,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     if (!product) {
         return notFound();
     }
+
+    const { isInWishlist, toggleWishlist } = useWishlist();
+    const isWishlisted = isInWishlist(product.id);
 
     // Find which category this product belongs to for breadcrumb/context (optional but nice)
     const category = Object.values(CATEGORIES).find(cat =>
@@ -157,8 +162,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                             <button className="flex-1 py-4 bg-primary text-white hover:bg-terracotta transition-all duration-300 text-xs font-bold uppercase tracking-[0.15em] rounded-sm">
                                 Add to Cart
                             </button>
-                            <button className="px-6 py-4 border border-gray-200 hover:border-terracotta hover:text-terracotta transition-all duration-300 rounded-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
+                            <button
+                                onClick={() => toggleWishlist(product)}
+                                className={`px-6 py-4 border transition-all duration-300 rounded-sm flex items-center justify-center ${isWishlisted
+                                    ? 'border-terracotta bg-terracotta text-white'
+                                    : 'border-gray-200 hover:border-terracotta hover:text-terracotta'
+                                    }`}
+                            >
+                                <Heart className={`w-5 h-5 ${isWishlisted ? 'fill-current' : ''}`} />
                             </button>
                         </div>
 
