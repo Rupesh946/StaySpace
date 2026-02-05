@@ -9,6 +9,7 @@ import { formatPrice } from "@/utils/currency";
 import { notFound } from "next/navigation";
 import { Heart } from "lucide-react";
 import { useWishlist } from "@/context/WishlistContext";
+import { useCart } from "@/context/CartContext";
 
 export default function ProductPage({ params }: { params: { id: string } }) {
     // Flatten all products from all categories to find the matching one
@@ -21,6 +22,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
     }
 
     const { isInWishlist, toggleWishlist } = useWishlist();
+    const { addToCart } = useCart();
     const isWishlisted = isInWishlist(product.id);
 
     // Find which category this product belongs to for breadcrumb/context (optional but nice)
@@ -73,6 +75,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
         // Update state with OTHER items (excluding current one for display)
         setRecentlyViewed(viewed.filter(p => p.id !== product.id));
     }, [product]);
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity);
+    };
 
     return (
         <main className="min-h-screen pt-24 bg-white">
@@ -159,7 +165,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                                 </button>
                             </div>
 
-                            <button className="flex-1 py-4 bg-primary text-white hover:bg-terracotta transition-all duration-300 text-xs font-bold uppercase tracking-[0.15em] rounded-sm">
+                            <button
+                                onClick={handleAddToCart}
+                                className="flex-1 py-4 bg-primary text-white hover:bg-terracotta transition-all duration-300 text-xs font-bold uppercase tracking-[0.15em] rounded-sm"
+                            >
                                 Add to Cart
                             </button>
                             <button

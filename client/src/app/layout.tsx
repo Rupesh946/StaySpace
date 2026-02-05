@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 import { WishlistProvider } from "@/context/WishlistContext";
+import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 
 export default function RootLayout({
     children,
@@ -26,9 +28,13 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.variable} ${playfair.variable} ${cormorant.variable} font-sans`}>
-                <WishlistProvider>
-                    {children}
-                </WishlistProvider>
+                <AuthProvider>
+                    <CartProvider>
+                        <WishlistProvider>
+                            {children}
+                        </WishlistProvider>
+                    </CartProvider>
+                </AuthProvider>
             </body>
         </html>
     );

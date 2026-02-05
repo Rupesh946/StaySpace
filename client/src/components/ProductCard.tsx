@@ -6,6 +6,7 @@ import { Product } from "@/data/categories";
 import { Plus, Heart } from "lucide-react";
 import Link from "next/link";
 import { useWishlist } from "@/context/WishlistContext";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
     product: Product;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
     const [isHovered, setIsHovered] = useState(false);
     const { isInWishlist, toggleWishlist } = useWishlist();
+    const { addToCart } = useCart();
     const isWishlisted = isInWishlist(product.id);
 
     // Use second image if available for hover effect, otherwise default
@@ -68,9 +70,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {/* Quick Add Button - Bottom Center slide up */}
                 <div className="absolute bottom-4 left-0 right-0 flex justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-[20px] group-hover:translate-y-0 z-20 px-4">
                     <button
+                        type="button"
                         onClick={(e) => {
                             e.preventDefault();
-                            // Add cart logic here
+                            e.stopPropagation();
+                            addToCart(product, 1);
                         }}
                         className="w-full bg-primary/90 backdrop-blur text-white text-[10px] uppercase tracking-widest py-3 hover:bg-terracotta transition-colors flex items-center justify-center gap-2"
                     >
