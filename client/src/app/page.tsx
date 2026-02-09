@@ -5,10 +5,7 @@ import ShopSidebar from "@/components/ShopSidebar";
 import SpaceCard from "@/components/SpaceCard";
 import { formatPrice } from "@/utils/currency";
 import { ArrowRight, ArrowUp, Eye } from "lucide-react";
-import { useState } from "react";
-import { motion } from "framer-motion";
-
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { CATEGORIES, Product } from "@/data/categories";
 
@@ -79,56 +76,12 @@ export default function Home() {
 
                 {/* Hero Content */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
-                    <motion.h1
-                        className="text-7xl md:text-[10rem] font-serif font-bold leading-none tracking-tighter mb-8 drop-shadow-2xl"
-                        initial="hidden"
-                        animate="visible"
-                        variants={{
-                            hidden: { opacity: 0 },
-                            visible: {
-                                opacity: 1,
-                                transition: {
-                                    staggerChildren: 0.04,
-                                    delayChildren: 0.1
-                                }
-                            }
-                        }}
-                    >
-                        {"STAYSPACE".split("").map((letter, index) => (
-                            <motion.span
-                                key={index}
-                                className="inline-block"
-                                variants={{
-                                    hidden: {
-                                        opacity: 0,
-                                        y: 40,
-                                        filter: "blur(12px)",
-                                        scale: 1.1
-                                    },
-                                    visible: {
-                                        opacity: 1,
-                                        y: 0,
-                                        filter: "blur(0px)",
-                                        scale: 1,
-                                        transition: {
-                                            duration: 0.8,
-                                            ease: [0.2, 0.65, 0.3, 0.9],
-                                        }
-                                    }
-                                }}
-                            >
-                                {letter}
-                            </motion.span>
-                        ))}
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        transition={{ duration: 0.8, delay: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
-                        className="text-2xl md:text-3xl font-display font-light italic mb-12 max-w-2xl mx-auto text-white/90 tracking-wide drop-shadow-lg"
-                    >
+                    <h1 className="text-7xl md:text-[10rem] font-serif font-bold leading-none tracking-tighter mb-8 drop-shadow-2xl">
+                        STAYSPACE
+                    </h1>
+                    <p className="text-2xl md:text-3xl font-display font-light italic mb-12 max-w-2xl mx-auto text-white/90 tracking-wide drop-shadow-lg">
                         Design the space. Live the feeling.
-                    </motion.p>
+                    </p>
                 </div>
             </section>
 
