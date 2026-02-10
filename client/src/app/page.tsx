@@ -5,7 +5,10 @@ import ShopSidebar from "@/components/ShopSidebar";
 import SpaceCard from "@/components/SpaceCard";
 import { formatPrice } from "@/utils/currency";
 import { ArrowRight, ArrowUp, Eye } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+
+
+import { useRef, useEffect } from "react";
 
 import { CATEGORIES, Product } from "@/data/categories";
 

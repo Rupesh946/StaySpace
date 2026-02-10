@@ -11,10 +11,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/cart/page": [
+    "/auth/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/cart/page.js"
+      "static/chunks/app/auth/page.js"
+    ],
+    "/wishlist/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/wishlist/page.js"
     ]
   }
 }

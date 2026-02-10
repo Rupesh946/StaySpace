@@ -7,6 +7,7 @@ import path from 'path';
 import fs from 'fs';
 
 import authRoutes from './routes/auth';
+import adminRoutes from './routes/admin';
 import productRoutes from './routes/products';
 import spaceRoutes from './routes/spaces';
 import orderRoutes from './routes/orders';
@@ -59,6 +60,7 @@ app.use('/api/', apiLimiter);
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/admin', adminRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/spaces', spaceRoutes);
 app.use('/api/orders', orderRoutes);
@@ -80,6 +82,7 @@ app.get('/', (req, res) => {
         version: '2.0.0',
         endpoints: {
             auth: '/api/auth',
+            admin: '/api/admin',
             products: '/api/products',
             spaces: '/api/spaces',
             orders: '/api/orders',
