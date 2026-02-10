@@ -1,386 +1,270 @@
-# 🎉 StaySpace - Payment Integration Added!
+# StaySpace - E-Commerce Platform
 
-## 📋 Latest Update: Payment Processing ✅ COMPLETE
+A modern, full-stack e-commerce platform for interior design and furniture, built with Next.js, Express, MongoDB, and deployed on Vercel.
 
-**Date**: February 9, 2026  
-**Version**: 2.1.0  
-**Status**: Payment Processing Fully Implemented!
+## ✨ Features
 
----
+### Customer Features
+- 🔐 User authentication (register, login, JWT)
+- 🛍️ Browse products with search and filtering
+- 🛒 Shopping cart functionality
+- 📦 Order placement and tracking
+- 👤 User profile management
+- 📍 Multiple shipping addresses
+- 💰 Cash on Delivery (COD) payment
 
-## ✅ WHAT'S NEW - PAYMENT PROCESSING
+### Admin Features
+- 📊 Dashboard with analytics
+- 📦 Product management (CRUD)
+- 🛍️ Order management
+- 👥 User management
+- 📈 Sales tracking
+- 📉 Inventory monitoring
+- 🔔 Low stock alerts
 
-### Just Implemented:
-1. **💳 Stripe Payment Integration** - Full payment processing
-2. **🔄 Payment Intent System** - Secure payment initialization
-3. **📡 Webhook Handler** - Automatic order status updates
-4. **💰 Refund System** - Admin can issue full/partial refunds
-5. **📊 Payment Status Tracking** - Real-time payment monitoring
+## 🛠️ Tech Stack
 
-### New Files:
-- `server/src/utils/stripe.ts` - Stripe service layer
-- `server/src/routes/payments.ts` - Payment API endpoints
-- `PAYMENT_INTEGRATION.md` - Complete payment setup guide
+### Frontend
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State Management:** React Context API
+- **Animations:** Framer Motion
 
----
+### Backend
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Language:** TypeScript
+- **Database:** MongoDB with Mongoose
+- **Authentication:** JWT (JSON Web Tokens)
+- **Password Hashing:** bcryptjs
 
-## 📊 UPDATED READINESS SCORE
+### Deployment
+- **Platform:** Vercel (Serverless)
+- **Database Hosting:** MongoDB Atlas
 
-| Category | Before | After | Status |
-|----------|--------|-------|--------|
-| **Security** | 9/10 | 9/10 | ✅ Excellent |
-| **Backend API** | 9/10 | 9/10 | ✅ Excellent |
-| **Payment Processing** | 3/10 | **9/10** | ✅ **COMPLETE** |
-| **Order Management** | 9/10 | 9/10 | ✅ Excellent |
-| **Email System** | 9/10 | 9/10 | ✅ Excellent |
-| **Inventory Management** | 9/10 | 9/10 | ✅ Excellent |
-| **Admin Features** | 2/10 | 2/10 | ❌ No UI |
-| **Shipping Integration** | 0/10 | 0/10 | ❌ Not Started |
-| **Overall Readiness** | **65%** | **80%** | ✅ **MAJOR PROGRESS** |
+## 📁 Project Structure
 
----
+```
+StaySpace/
+├── client/                 # Next.js frontend
+│   ├── src/
+│   │   ├── app/           # Next.js app router pages
+│   │   ├── components/    # React components
+│   │   ├── context/       # Context providers (Auth, Cart, Wishlist)
+│   │   ├── data/          # Static data
+│   │   └── utils/         # Utility functions
+│   ├── public/            # Static assets
+│   ├── package.json
+│   └── vercel.json
+│
+├── server/                # Express backend
+│   ├── src/
+│   │   ├── controllers/   # Route controllers
+│   │   ├── middleware/    # Auth & other middleware
+│   │   ├── models/        # Mongoose models
+│   │   ├── routes/        # API routes
+│   │   └── index.ts       # Server entry point
+│   ├── package.json
+│   └── vercel.json
+│
+├── DEPLOYMENT_GUIDE.md    # Detailed deployment instructions
+└── README.md              # This file
+```
 
-## 🚀 COMPLETE FEATURE LIST
+## 🚀 Quick Start
 
-### ✅ Fully Implemented (100%):
+### Prerequisites
+- Node.js 18+ installed
+- MongoDB Atlas account (or local MongoDB)
+- Vercel account (for deployment)
 
-1. **🔐 Security Hardening**
-   - Rate limiting
-   - Security headers (Helmet)
-   - Input validation
-   - JWT authentication
+### 1. Clone the Repository
 
-2. **👤 Authentication & Authorization**
-   - User registration/login
-   - Password reset flow
-   - Admin role authorization
-
-3. **📧 Email System**
-   - Order confirmations
-   - Welcome emails
-   - Password reset emails
-
-4. **📝 Logging System**
-   - Error logging
-   - HTTP request logging
-   - Security event tracking
-
-5. **📦 Inventory Management**
-   - Stock validation
-   - Atomic stock updates
-   - Stock restoration on cancellation
-
-6. **🛒 Order Management**
-   - Order creation with stock checks
-   - Order status tracking
-   - Order cancellation
-   - Admin order management
-
-7. **🔍 Product Management**
-   - Pagination & search
-   - Advanced filters
-   - Admin CRUD operations
-
-8. **💳 Payment Processing** ✨ NEW
-   - Stripe payment intents
-   - Payment status tracking
-   - Webhook handling
-   - Refund processing
-
----
-
-## 🔧 QUICK SETUP
-
-### 1. Install Dependencies
 ```bash
+git clone https://github.com/yourusername/stayspace.git
+cd stayspace
+```
+
+### 2. Install Dependencies
+
+```bash
+# Install backend dependencies
 cd server
+npm install
+
+# Install frontend dependencies
+cd ../client
 npm install
 ```
 
-### 2. Configure Environment
-```bash
-cp .env.example .env
-```
+### 3. Configure Environment Variables
 
-**Edit `.env` and add**:
+**Backend (`server/.env`):**
 ```env
-# Database
 MONGO_URI=mongodb://localhost:27017/stayspace
-
-# JWT Secret
-JWT_SECRET=your-super-secret-jwt-key-min-32-characters
-
-# Email (Gmail)
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-gmail-app-password
-
-# Stripe Payment (NEW!)
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
-STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
-STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
-PAYMENT_CURRENCY=inr
+MONGODB_URI=mongodb://localhost:27017/stayspace
+JWT_SECRET=your-super-secret-jwt-key-change-this
+JWT_EXPIRE=30d
+PORT=5000
+NODE_ENV=development
+CLIENT_URL=http://localhost:3000
 ```
 
-### 3. Get Stripe Keys
-1. Sign up at https://stripe.com
-2. Go to https://dashboard.stripe.com/test/apikeys
-3. Copy your test keys to `.env`
+**Frontend (`client/.env.local`):**
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
 
-### 4. Start Server
+### 4. Run Development Servers
+
 ```bash
+# Terminal 1 - Backend
+cd server
+npm run dev
+
+# Terminal 2 - Frontend
+cd client
 npm run dev
 ```
 
----
+Visit `http://localhost:3000` to see the application.
 
-## 🎯 NEW API ENDPOINTS
+## 📦 Deployment
 
-### Payment Endpoints:
-- `GET /api/payments/config` - Get Stripe publishable key
-- `POST /api/payments/create-intent` - Create payment intent
-- `GET /api/payments/status/:id` - Get payment status
-- `POST /api/payments/cancel/:id` - Cancel payment
-- `POST /api/payments/refund` - Create refund (admin)
-- `POST /api/payments/webhook` - Stripe webhook handler
+For detailed deployment instructions, see [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
 
-**Full API documentation**: See `PAYMENT_INTEGRATION.md`
+### Quick Deploy to Vercel
 
----
-
-## 💻 FRONTEND INTEGRATION
-
-### Install Stripe.js
 ```bash
-npm install @stripe/stripe-js @stripe/react-stripe-js
+# Deploy backend
+cd server
+vercel --prod
+
+# Deploy frontend
+cd ../client
+vercel --prod
 ```
 
-### Basic Checkout Flow
-```tsx
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, PaymentElement } from '@stripe/react-stripe-js';
+## 🔑 API Endpoints
 
-const stripePromise = loadStripe('pk_test_...');
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user
+- `PUT /api/auth/profile` - Update profile
+- `POST /api/auth/address` - Add address
 
-function Checkout({ orderId }) {
-  const [clientSecret, setClientSecret] = useState('');
+### Products
+- `GET /api/products` - Get all products (with filters)
+- `GET /api/products/featured` - Get featured products
+- `GET /api/products/:id` - Get product by ID
+- `GET /api/products/slug/:slug` - Get product by slug
+- `POST /api/products` - Create product (Admin)
+- `PUT /api/products/:id` - Update product (Admin)
+- `DELETE /api/products/:id` - Delete product (Admin)
 
-  useEffect(() => {
-    // Create payment intent
-    fetch('/api/payments/create-intent', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ orderId })
-    })
-      .then(res => res.json())
-      .then(data => setClientSecret(data.data.clientSecret));
-  }, [orderId]);
+### Orders
+- `POST /api/orders` - Create order
+- `GET /api/orders/myorders` - Get user's orders
+- `GET /api/orders/:id` - Get order by ID
+- `PUT /api/orders/:id/pay` - Mark order as paid
+- `GET /api/orders` - Get all orders (Admin)
+- `PUT /api/orders/:id/status` - Update order status (Admin)
 
-  return (
-    <Elements stripe={stripePromise} options={{ clientSecret }}>
-      <PaymentElement />
-      {/* Payment form */}
-    </Elements>
-  );
-}
-```
+### Admin
+- `GET /api/admin/stats` - Get dashboard statistics
+- `GET /api/admin/users` - Get all users
+- `PUT /api/admin/users/:id/role` - Update user role
+- `DELETE /api/admin/users/:id` - Delete user
 
-**Complete example**: See `PAYMENT_INTEGRATION.md`
+## 👤 User Roles
 
----
+- **customer** - Default role for registered users
+- **admin** - Full system access
+- **manager** - Product and inventory management
+- **support** - View orders and customer queries
 
-## 🧪 TESTING PAYMENTS
+## 🔒 Security Features
 
-### Test Card (Success):
-```
-Card Number: 4242 4242 4242 4242
-Expiry: 12/34
-CVC: 123
-ZIP: 12345
-```
+- JWT-based authentication
+- Password hashing with bcryptjs (cost factor: 12)
+- Role-based access control (RBAC)
+- CORS configuration
+- Input validation
+- Secure HTTP headers
 
-### Test Card (3D Secure):
-```
-Card Number: 4000 0025 0000 3155
-```
+## 📊 Database Models
 
-**More test cards**: https://stripe.com/docs/testing
+### User
+- Authentication credentials
+- Profile information
+- Multiple shipping addresses
+- Role-based permissions
 
----
+### Product
+- Product details and pricing
+- Inventory tracking
+- SEO metadata
+- Categories and tags
+- Sales analytics
 
-## 📚 DOCUMENTATION
+### Order
+- Order items and pricing
+- Shipping and billing addresses
+- Payment status
+- Order status workflow
+- Tracking information
 
-### Setup & Configuration:
-👉 **`PAYMENT_INTEGRATION.md`** - Complete payment setup guide
-- Stripe account setup
-- API key configuration
-- Webhook setup
-- Frontend integration
-- Testing guide
+### Cart
+- User/session-based carts
+- Auto-expiration (7 days)
+- Price tracking
 
-### Implementation Details:
-👉 **`IMPLEMENTATION_PROGRESS.md`** - Detailed progress report
+## 🎯 Roadmap
 
-### Quick Start:
-👉 **`QUICK_START.md`** - Setup instructions
-
----
-
-## ❌ WHAT'S STILL MISSING
-
-### Critical:
-1. ❌ **Admin Dashboard UI** - Backend ready, needs React frontend
-2. ❌ **Shipping Integration** - No cost calculation or tracking
-
-### Important:
-3. ❌ **Product Reviews** - No review system
-4. ❌ **Customer Support** - No contact form
-5. ❌ **Advanced Analytics** - Basic logging only
-
----
-
-## 🎯 CAN I LAUNCH NOW?
-
-### ✅ You Have:
+### Phase 1 (Current)
 - ✅ User authentication
-- ✅ Product browsing
-- ✅ Shopping cart
-- ✅ Order management
-- ✅ **Payment processing** ✨
-- ✅ Email notifications
-- ✅ Inventory management
-- ✅ Security measures
+- ✅ Product management
+- ✅ Order system
+- ✅ Admin dashboard
+- ✅ COD payment
 
-### ⚠️ You Still Need:
-- ❌ Admin dashboard (to manage products/orders)
-- ❌ Shipping integration (to calculate shipping costs)
+### Phase 2 (Planned)
+- 💳 Payment gateway integration (Stripe)
+- 📧 Email notifications
+- 🔍 Advanced search (Algolia)
+- ⭐ Product reviews and ratings
+- ❤️ Enhanced wishlist
 
-### 📅 Timeline to Launch:
+### Phase 3 (Future)
+- 📱 Mobile app
+- 🌍 Multi-language support
+- 💱 Multi-currency support
+- 🎁 Gift cards
+- 📊 Advanced analytics
 
-**Option 1: Minimal Launch (2-3 weeks)**
-- Build basic admin dashboard
-- Add simple shipping cost calculation
-- Test end-to-end
-- **You can launch!**
+## 🤝 Contributing
 
-**Option 2: Full-Featured (4-6 weeks)**
-- Complete admin dashboard
-- Full shipping integration
-- Product reviews
-- Customer support
-- Analytics dashboard
-- **Professional launch**
+Contributions are welcome! Please feel free to submit a Pull Request.
 
----
+## 📄 License
 
-## 🚀 NEXT STEPS
+This project is licensed under the MIT License.
 
-### This Week:
-1. ✅ Test payment integration
-2. ✅ Set up Stripe webhook (local)
-3. ✅ Test with test cards
-4. ✅ Integrate frontend checkout
+## 🆘 Support
 
-### Next 2 Weeks:
-1. ⏳ Build admin dashboard
-2. ⏳ Add shipping integration
-3. ⏳ End-to-end testing
+For issues and questions:
+- Check [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+- Review API documentation above
+- Check browser console and network logs
+- Review Vercel deployment logs
 
-### Before Launch:
-1. ⏳ Switch to live Stripe keys
-2. ⏳ Set up production webhook
-3. ⏳ Security audit
-4. ⏳ Performance testing
+## 👨‍💻 Author
+
+Built with ❤️ for modern e-commerce
 
 ---
 
-## 💡 PAYMENT FLOW
-
-```
-1. User adds items to cart
-2. User proceeds to checkout
-3. Frontend creates order → POST /api/orders
-4. Frontend creates payment intent → POST /api/payments/create-intent
-5. Frontend shows Stripe payment form
-6. User enters payment details
-7. Stripe processes payment
-8. Stripe sends webhook → POST /api/payments/webhook
-9. Backend updates order status to "processing"
-10. Backend sends confirmation email
-11. Frontend redirects to success page
-```
-
----
-
-## 🔒 SECURITY
-
-### Payment Security:
-- ✅ PCI compliance (Stripe handles card data)
-- ✅ Webhook signature verification
-- ✅ Payment intent pattern (secure flow)
-- ✅ 3D Secure support
-- ✅ Idempotency (no duplicate charges)
-
-### Application Security:
-- ✅ Rate limiting
-- ✅ Input validation
-- ✅ JWT authentication
-- ✅ CORS protection
-- ✅ Security headers
-
----
-
-## 📞 SUPPORT & RESOURCES
-
-### Payment Help:
-- **Setup Guide**: `PAYMENT_INTEGRATION.md`
-- **Stripe Docs**: https://stripe.com/docs
-- **Test Cards**: https://stripe.com/docs/testing
-
-### General Help:
-- **Quick Start**: `QUICK_START.md`
-- **Progress Report**: `IMPLEMENTATION_PROGRESS.md`
-
----
-
-## 🎊 ACHIEVEMENTS
-
-### Phase 1 (Complete):
-✅ Security, Auth, Emails, Logging, Inventory, Orders, Products
-
-### Phase 2 (Complete): ✨ NEW
-✅ **Payment Processing**
-
-### Phase 3 (Next):
-⏳ Admin Dashboard, Shipping Integration
-
----
-
-## 📈 PROGRESS SUMMARY
-
-**Started**: 35% ready  
-**After Phase 1**: 65% ready  
-**After Phase 2**: **80% ready** ✨  
-**To Launch**: 90%+ needed
-
-**You're almost there!** 🚀
-
----
-
-## 🆘 NEED HELP?
-
-**Ready for the next phase?** Ask me to:
-- "Build admin dashboard"
-- "Add shipping integration"
-- "Implement product reviews"
-- "Help with frontend checkout"
-
----
-
-**🎉 Congratulations! Your e-commerce platform now has full payment processing!** 💳
-
-**Last Updated**: February 9, 2026  
-**Version**: 2.1.0  
-**Payment Status**: ✅ FULLY IMPLEMENTED
+**Happy Coding! 🚀**
