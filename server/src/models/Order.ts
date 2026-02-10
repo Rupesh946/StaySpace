@@ -138,7 +138,7 @@ OrderSchema.pre('save', async function (next) {
 
 // Create indexes
 OrderSchema.index({ user: 1, createdAt: -1 });
-OrderSchema.index({ orderNumber: 1 });
+// (orderNumber index is created automatically by unique: true)
 OrderSchema.index({ orderStatus: 1 });
 
 export default mongoose.model<IOrder>('Order', OrderSchema);
