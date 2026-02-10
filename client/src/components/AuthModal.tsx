@@ -25,12 +25,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         setIsLoading(true);
 
         try {
-            let success = false;
+            let result;
 
             if (view === 'signin') {
-                success = await login(email, password);
-                if (!success) {
-                    setError("Invalid email or password");
+                result = await login(email, password);
+                if (!result.success) {
+                    setError(result.error || "Invalid email or password");
                 }
             } else {
                 if (!name.trim()) {
@@ -38,13 +38,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     setIsLoading(false);
                     return;
                 }
-                success = await signup(name, email, password);
-                if (!success) {
-                    setError("Email already exists");
+                result = await signup(name, email, password);
+                if (!result.success) {
+                    setError(result.error || "Email already exists");
                 }
             }
 
-            if (success) {
+            if (result.success) {
                 // Reset form
                 setName("");
                 setEmail("");
