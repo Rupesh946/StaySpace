@@ -22,7 +22,7 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://stayspace.onrender.com/api';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
@@ -31,9 +31,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Load user from localStorage and verify token on mount
     useEffect(() => {
         const loadUser = async () => {
+            console.log("AuthContext: Using API_URL:", API_URL);
             try {
                 const token = localStorage.getItem("token");
                 console.log("AuthContext: Loading user, token present:", !!token);
+
                 if (token) {
                     // Verify token and get user data from backend
                     const response = await fetch(`${API_URL}/auth/me`, {
@@ -44,19 +46,34 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
                     if (response.ok) {
                         const userData = await response.json();
-                        console.log("AuthContext: User loaded:", userData);
-                        setUser(userData);
+                        // Handle case where backend returns token in user object (unlikely for getMe, but safety first)
+                        const userStart = { ...userData, id: userData._id || userData.id };
+                        console.log("AuthContext: User loaded:", userStart);
+                        setUser(userStart);
                     } else {
-                        console.warn("AuthContext: Token invalid, clearing");
-                        // Token is invalid, clear it
-                        localStorage.removeItem("token");
+                        console.warn(`AuthContext: Failed to load user. Status: ${response.status} ${response.statusText}`);
+
+                        // Check if response is HTML (common deployment error)
+                        const contentType = response.headers.get("content-type");
+                        if (contentType && contentType.includes("text/html")) {
+                            console.error("AuthContext: CRITICAL - Endpoint returned HTML. Check API_URL environment variable! It looks like: " + API_URL);
+                        }
+
+                        // ONLY clear token if it's explicitly unauthorized (401)
+                        if (response.status === 401) {
+                            console.warn("AuthContext: Token invalid (401), clearing");
+                            localStorage.removeItem("token");
+                        }
                     }
                 } else {
                     console.log("AuthContext: No token found");
                 }
             } catch (error) {
-                console.error("Failed to load user", error);
-                localStorage.removeItem("token");
+                console.error("AuthContext: Network/Parse error loading user", error);
+
+                // If it's a network error (e.g. backend down), try to keep the token
+                // But if user is null, UI will show logged out. 
+                // We're just logging it for now.
             } finally {
                 setIsLoaded(true);
             }

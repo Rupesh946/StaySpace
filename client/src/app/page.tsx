@@ -79,7 +79,7 @@ export default function Home() {
 
                 {/* Hero Content */}
                 <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
-                    <h1 className="text-7xl md:text-[10rem] font-serif font-bold leading-none tracking-tighter mb-8 drop-shadow-2xl">
+                    <h1 className="text-6xl md:text-[10rem] font-serif font-bold leading-none tracking-tighter mb-8 drop-shadow-2xl">
                         STAYSPACE
                     </h1>
                     <p className="text-2xl md:text-3xl font-display font-light italic mb-12 max-w-2xl mx-auto text-white/90 tracking-wide drop-shadow-lg">
@@ -91,10 +91,11 @@ export default function Home() {
 
             {/* Philosophy Section */}
             {/* Philosophy Section */}
-            <section className="py-40 px-6">
+            {/* Philosophy Section */}
+            <section className="py-20 md:py-40 px-6">
                 <div className="max-w-3xl mx-auto text-center">
                     <span className="text-xs uppercase tracking-[0.3em] text-gray-400 mb-8 block">The Philosophy</span>
-                    <h2 className="text-5xl md:text-7xl font-display italic font-light text-primary mb-10 leading-relaxed">
+                    <h2 className="text-3xl md:text-5xl lg:text-7xl font-display italic font-light text-primary mb-10 leading-relaxed">
                         "Your home should be a story of who you are, and a collection of what you love."
                     </h2>
                     <p className="text-xs md:text-sm font-sans text-gray-400 tracking-[0.15em] uppercase opacity-60">
@@ -242,11 +243,11 @@ export default function Home() {
                                 <div className="absolute inset-0 bg-black/40" />
                             </div>
 
-                            <div className="absolute bottom-20 left-10 md:left-20 text-white z-20 max-w-xl">
-                                <span className="text-xs font-sans uppercase tracking-[0.3em] mb-6 block opacity-90">
+                            <div className="absolute bottom-10 left-6 md:bottom-20 md:left-20 text-white z-20 max-w-xl pr-6">
+                                <span className="text-xs font-sans uppercase tracking-[0.3em] mb-4 md:mb-6 block opacity-90">
                                     {scene.tag}
                                 </span>
-                                <h2 className="text-5xl md:text-7xl font-display italic font-light mb-8 leading-[1.1]">
+                                <h2 className="text-4xl md:text-7xl font-display italic font-light mb-6 md:mb-8 leading-[1.1]">
                                     {scene.title}
                                 </h2>
                                 <p className="text-lg font-light font-display italic text-white/90 mb-10 max-w-md leading-relaxed">
@@ -348,13 +349,13 @@ export default function Home() {
                 {/* Subtle Gradient/Vignette for Depth */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent opacity-40 pointer-events-none" />
 
-                <div className="max-w-[1400px] mx-auto px-6 pt-40 pb-12 relative z-10 font-light">
+                <div className="max-w-[1400px] mx-auto px-6 pt-20 md:pt-40 pb-12 relative z-10 font-light">
                     {/* Inner Circle / Newsletter */}
-                    <div className="flex flex-col items-center text-center mb-40 max-w-lg mx-auto">
+                    <div className="flex flex-col items-center text-center mb-20 md:mb-40 max-w-lg mx-auto">
                         <span className="text-[10px] uppercase tracking-[0.3em] text-white/30 mb-8 block font-sans">
                             Exclusive Access
                         </span>
-                        <h2 className="text-5xl md:text-6xl font-display italic mb-8 font-light text-white/90">
+                        <h2 className="text-4xl md:text-6xl font-display italic mb-8 font-light text-white/90">
                             The Inner Circle
                         </h2>
                         <p className="text-xs md:text-sm text-center text-neutral-400 font-sans tracking-widest leading-relaxed mb-16 max-w-sm mx-auto opacity-60">
