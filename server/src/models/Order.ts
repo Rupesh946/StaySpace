@@ -54,8 +54,7 @@ export interface IOrder extends Document {
 const OrderSchema: Schema = new Schema({
     orderNumber: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     user: {
         type: Schema.Types.ObjectId,
@@ -138,6 +137,7 @@ OrderSchema.pre('save', async function (next) {
 
 // Create indexes
 OrderSchema.index({ user: 1, createdAt: -1 });
+OrderSchema.index({ orderNumber: 1 }, { unique: true });
 // (orderNumber index is created automatically by unique: true)
 OrderSchema.index({ orderStatus: 1 });
 

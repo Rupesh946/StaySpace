@@ -34,7 +34,6 @@ const UserSchema: Schema = new Schema({
     email: {
         type: String,
         required: [true, 'Email is required'],
-        unique: true,
         lowercase: true,
         trim: true,
         match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email']
@@ -101,6 +100,7 @@ UserSchema.methods.comparePassword = async function (this: any, candidatePasswor
 };
 
 // Create indexes
+UserSchema.index({ email: 1 }, { unique: true });
 // (email index is created automatically by unique: true)
 
 export default mongoose.model<IUser>('User', UserSchema);

@@ -50,8 +50,10 @@ export default function AuthPage() {
             setEmail("");
             setPassword("");
             setError("");
+
             router.push("/");
         } catch (err) {
+            console.error("AuthPage: error", err);
             setError("An unexpected error occurred. Please try again.");
         } finally {
             setIsLoading(false);

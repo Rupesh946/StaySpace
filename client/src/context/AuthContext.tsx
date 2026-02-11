@@ -33,6 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const loadUser = async () => {
             try {
                 const token = localStorage.getItem("token");
+                console.log("AuthContext: Loading user, token present:", !!token);
                 if (token) {
                     // Verify token and get user data from backend
                     const response = await fetch(`${API_URL}/auth/me`, {
@@ -43,11 +44,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
                     if (response.ok) {
                         const userData = await response.json();
+                        console.log("AuthContext: User loaded:", userData);
                         setUser(userData);
                     } else {
+                        console.warn("AuthContext: Token invalid, clearing");
                         // Token is invalid, clear it
                         localStorage.removeItem("token");
                     }
+                } else {
+                    console.log("AuthContext: No token found");
                 }
             } catch (error) {
                 console.error("Failed to load user", error);
@@ -62,6 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const login = async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
         try {
+            console.log("AuthContext: Attempting login for", email);
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
@@ -73,11 +79,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const data = await response.json();
 
             if (response.ok) {
+                // Backend returns user data + token in root object
+                const { token, ...userData } = data;
+                // Ensure id field is set (backend might send _id)
+                const user = { ...userData, id: userData._id || userData.id };
+
+                console.log("AuthContext: Login successful", user);
                 // Store token and user data
-                localStorage.setItem("token", data.token);
-                setUser(data.user);
+                localStorage.setItem("token", token);
+                setUser(user);
                 return { success: true };
             } else {
+                console.error("AuthContext: Login failed", data.message);
                 return { success: false, error: data.message || 'Login failed' };
             }
         } catch (error) {
@@ -88,6 +101,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     const signup = async (name: string, email: string, password: string): Promise<{ success: boolean; error?: string }> => {
         try {
+            console.log("AuthContext: Attempting signup for", email);
             const response = await fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
@@ -99,11 +113,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const data = await response.json();
 
             if (response.ok) {
+                // Backend returns user data + token in root object
+                const { token, ...userData } = data;
+                // Ensure id field is set (backend might send _id)
+                const user = { ...userData, id: userData._id || userData.id };
+
+                console.log("AuthContext: Signup successful", user);
                 // Store token and user data
-                localStorage.setItem("token", data.token);
-                setUser(data.user);
+                localStorage.setItem("token", token);
+                setUser(user);
                 return { success: true };
             } else {
+                console.error("AuthContext: Signup failed", data.message);
                 return { success: false, error: data.message || 'Signup failed' };
             }
         } catch (error) {
