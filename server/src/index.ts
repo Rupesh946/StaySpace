@@ -17,10 +17,16 @@ import './models/Order';
 import './models/Cart';
 import './models/Space';
 
+import passport from './config/passport';
+import session from 'express-session';
+
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Trust proxy (Critical for Render/Vercel to detect HTTPS)
+app.set('trust proxy', 1);
 
 // Middleware
 const allowedOrigins = [
@@ -44,6 +50,21 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Session middleware
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'super_secret_session_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+}));
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use('/api/auth', authRoutes);

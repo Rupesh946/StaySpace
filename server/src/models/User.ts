@@ -2,6 +2,7 @@ import mongoose, { Document, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export interface IUser extends Document {
+    _id: mongoose.Types.ObjectId; // Explicitly define _id
     name: string;
     email: string;
     password: string;
@@ -9,6 +10,7 @@ export interface IUser extends Document {
     role: 'customer' | 'admin' | 'manager' | 'support';
     isEmailVerified: boolean;
     avatar?: string;
+    googleId?: string;
     addresses: {
         fullName: string;
         addressLine1: string;
@@ -40,9 +42,14 @@ const UserSchema: Schema = new Schema({
     },
     password: {
         type: String,
-        required: [true, 'Password is required'],
+        required: [function (this: any) { return !this.googleId; }, 'Password is required if not using Google login'],
         minlength: [6, 'Password must be at least 6 characters'],
         select: false // Don't return password by default
+    },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true
     },
     phone: {
         type: String,

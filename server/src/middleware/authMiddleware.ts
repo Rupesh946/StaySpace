@@ -2,11 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import User, { IUser } from '../models/User';
 
-export interface AuthRequest extends Request<any, any, any, any> {
-    user?: IUser;
-}
 
-export const protect = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const protect = async (req: Request, res: Response, next: NextFunction) => {
     let token;
 
     if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -37,14 +34,14 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
 };
 
 export const authorize = (...roles: string[]) => {
-    return (req: AuthRequest, res: Response, next: NextFunction) => {
+    return (req: Request, res: Response, next: NextFunction) => {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authenticated' });
         }
 
-        if (!roles.includes(req.user.role)) {
+        if (!roles.includes((req.user as IUser).role)) {
             return res.status(403).json({
-                message: `Role ${req.user.role} is not authorized to access this route`
+                message: `Role ${(req.user as IUser).role} is not authorized to access this route`
             });
         }
 

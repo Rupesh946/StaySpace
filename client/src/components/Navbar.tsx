@@ -17,7 +17,11 @@ const navLinks = [
     { name: "Outdoor", href: "/spaces/outdoor" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+    variant?: "default" | "dark";
+}
+
+export default function Navbar({ variant = "default" }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -59,9 +63,16 @@ export default function Navbar() {
     };
 
     // Dynamic Styling based on state
+    const isDarkPage = variant === "dark";
+    // We want dark text ONLY if we are on a dark variant page AND not scrolled AND mobile menu is closed.
+    // In all other cases (Home, Scrolled, Mobile Menu Open), we want white text.
+    const useDarkText = isDarkPage && !isScrolled && !isMobileMenuOpen;
+
     const headerBg = isScrolled || isMobileMenuOpen ? "bg-black/90 backdrop-blur-md border-white/5" : "bg-transparent border-transparent";
     const headerBorder = isScrolled ? "border-b" : "";
-    const textColor = "text-white"; // Always white on dark/transparent backgrounds for this luxury feel
+
+    const textColor = useDarkText ? "text-primary" : "text-white";
+    const lineColor = useDarkText ? "bg-primary" : "bg-white";
 
     return (
         <>
@@ -88,7 +99,7 @@ export default function Navbar() {
                                     className={`text-xs uppercase tracking-[0.2em] font-medium transition-all duration-300 relative group ${isActive ? "opacity-100" : "opacity-70 hover:opacity-100"}`}
                                 >
                                     {link.name}
-                                    <span className={`absolute -bottom-2 left-0 w-full h-[1px] bg-white transition-transform duration-300 origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
+                                    <span className={`absolute -bottom-2 left-0 w-full h-[1px] ${lineColor} transition-transform duration-300 origin-left ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
                                 </Link>
                             );
                         })}
@@ -110,7 +121,7 @@ export default function Navbar() {
                                     <X className="w-3 h-3 cursor-pointer opacity-70 hover:opacity-100 ml-2" onClick={() => setIsSearchOpen(false)} />
                                 </div>
                             ) : (
-                                <button onClick={() => setIsSearchOpen(true)} className="hover:opacity-70 transition-opacity">
+                                <button onClick={() => setIsSearchOpen(true)} className={`hover:opacity-70 transition-opacity`}>
                                     <Search className="w-5 h-5 stroke-[1.5]" />
                                 </button>
                             )}

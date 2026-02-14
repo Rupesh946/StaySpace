@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
-import { AuthRequest } from '../middleware/authMiddleware';
+import User, { IUser } from '../models/User';
+
 
 // Generate JWT Token
-const generateToken = (id: string): string => {
+export const generateToken = (id: string): string => {
     return jwt.sign({ id }, process.env.JWT_SECRET || 'your-secret-key', {
         expiresIn: '30d'
     });
@@ -99,13 +99,13 @@ export const login = async (req: Request, res: Response) => {
 // @desc    Get current user
 // @route   GET /api/auth/me
 // @access  Private
-export const getMe = async (req: AuthRequest, res: Response) => {
+export const getMe = async (req: Request, res: Response) => {
     try {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const user = await User.findById(req.user._id).select('-password');
+        const user = await User.findById((req.user as IUser)._id).select('-password');
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -132,13 +132,13 @@ export const getMe = async (req: AuthRequest, res: Response) => {
 // @desc    Update user profile
 // @route   PUT /api/auth/profile
 // @access  Private
-export const updateProfile = async (req: AuthRequest, res: Response) => {
+export const updateProfile = async (req: Request, res: Response) => {
     try {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const user = await User.findById(req.user._id);
+        const user = await User.findById((req.user as IUser)._id);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -172,13 +172,13 @@ export const updateProfile = async (req: AuthRequest, res: Response) => {
 // @desc    Add address
 // @route   POST /api/auth/address
 // @access  Private
-export const addAddress = async (req: AuthRequest, res: Response) => {
+export const addAddress = async (req: Request, res: Response) => {
     try {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const user = await User.findById(req.user._id);
+        const user = await User.findById((req.user as IUser)._id);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
@@ -215,5 +215,23 @@ export const addAddress = async (req: AuthRequest, res: Response) => {
             message: 'Server error',
             error: error.message
         });
+    }
+};
+// @desc    Google OAuth Callback
+// @route   GET /api/auth/google/callback
+// @access  Public
+export const googleCallback = async (req: Request, res: Response) => {
+    try {
+        const user = req.user as any;
+        const token = generateToken(user._id);
+
+        // Redirect to frontend with token
+        // In production, use the actual frontend URL from env
+        const clientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+        res.redirect(`${clientUrl}/auth/google/callback?token=${token}`);
+    } catch (error: any) {
+        console.error('Google callback error:', error);
+        const clientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+        res.redirect(`${clientUrl}/auth?error=LoginFailed`);
     }
 };

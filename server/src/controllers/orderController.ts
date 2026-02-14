@@ -1,12 +1,13 @@
 import { Request, Response } from 'express';
 import Order from '../models/Order';
 import Product from '../models/Product';
-import { AuthRequest } from '../middleware/authMiddleware';
+import { IUser } from '../models/User';
+
 
 // @desc    Create new order
 // @route   POST /api/orders
 // @access  Private
-export const createOrder = async (req: AuthRequest, res: Response) => {
+export const createOrder = async (req: Request, res: Response) => {
     try {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized' });
@@ -59,7 +60,7 @@ export const createOrder = async (req: AuthRequest, res: Response) => {
 
         // Create order
         const order = await Order.create({
-            user: req.user._id,
+            user: (req.user as IUser)._id,
             items,
             shippingAddress,
             billingAddress: billingAddress || shippingAddress,
@@ -88,13 +89,13 @@ export const createOrder = async (req: AuthRequest, res: Response) => {
 // @desc    Get user orders
 // @route   GET /api/orders/myorders
 // @access  Private
-export const getMyOrders = async (req: AuthRequest, res: Response) => {
+export const getMyOrders = async (req: Request, res: Response) => {
     try {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized' });
         }
 
-        const orders = await Order.find({ user: req.user._id })
+        const orders = await Order.find({ user: (req.user as IUser)._id })
             .sort('-createdAt')
             .populate('items.product', 'name images');
 
@@ -111,7 +112,7 @@ export const getMyOrders = async (req: AuthRequest, res: Response) => {
 // @desc    Get order by ID
 // @route   GET /api/orders/:id
 // @access  Private
-export const getOrderById = async (req: AuthRequest, res: Response) => {
+export const getOrderById = async (req: Request, res: Response) => {
     try {
         if (!req.user) {
             return res.status(401).json({ message: 'Not authorized' });
@@ -126,7 +127,7 @@ export const getOrderById = async (req: AuthRequest, res: Response) => {
         }
 
         // Check if user owns this order or is admin
-        if (order.user._id.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
+        if (order.user._id.toString() !== (req.user as IUser)._id.toString() && (req.user as IUser).role !== 'admin') {
             return res.status(403).json({ message: 'Not authorized to view this order' });
         }
 
@@ -143,7 +144,7 @@ export const getOrderById = async (req: AuthRequest, res: Response) => {
 // @desc    Update order to paid
 // @route   PUT /api/orders/:id/pay
 // @access  Private
-export const updateOrderToPaid = async (req: AuthRequest, res: Response) => {
+export const updateOrderToPaid = async (req: Request, res: Response) => {
     try {
         const order = await Order.findById(req.params.id);
 
