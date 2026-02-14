@@ -19,6 +19,17 @@ router.put('/profile', protect, updateProfile);
 router.put('/profile', protect, updateProfile);
 router.post('/address', protect, addAddress);
 
+// Debug Env Route (Remove in production later)
+router.get('/debug-env', (req, res) => {
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    res.json({
+        hasClientId: !!clientId,
+        clientIdLength: clientId ? clientId.length : 0,
+        clientIdStart: clientId ? clientId.substring(0, 5) : 'NONE',
+        nodeEnv: process.env.NODE_ENV
+    });
+});
+
 // Google OAuth
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
